@@ -1,0 +1,39 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/javascript-node
+{
+	"name": "Node.js",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"image": "mcr.microsoft.com/devcontainers/javascript-node:1-18-bookworm",
+	"features": {
+		"ghcr.io/devcontainers/features/git:1": {},
+		"ghcr.io/devcontainers/features/github-cli:1": {}
+	},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	"forwardPorts": [3000, 8080, 5000],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": "npm install -g live-server",
+
+	// Configure tool-specific properties.
+	"customizations": {
+		"vscode": {
+		"extensions": [
+			"ms-vscode.live-server",
+			"bradlc.vscode-tailwindcss",
+			"formulahendry.auto-rename-tag",
+			"christian-kohler.path-intellisense",
+			"ms-vscode.vscode-json"
+		],
+		"settings": {
+			"liveServer.settings.port": 3000,
+			"liveServer.settings.host": "0.0.0.0",
+			"liveServer.settings.donotShowInfoMsg": true,
+			"liveServer.settings.root": "/workspaces/happycynic-website"
+		}
+		}
+	},
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	"remoteUser": "node"
+}
