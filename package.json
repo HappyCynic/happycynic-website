@@ -1,10 +1,9 @@
 {
   "name": "happycynic-website",
   "version": "1.0.0",
-  "description": "A website for Happy Cynic Software LLC, featuring the Preppd application for travel and trip preparation.",
-  "main": "src/js/main.js",
+  "description": "A website for Happy Cynic Software LLC",
   "scripts": {
-    "start": "live-server src",
+    "start": "live-server .",
     "build": "echo 'Build step can be added here.'"
   },
   "keywords": [
