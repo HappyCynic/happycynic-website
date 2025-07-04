@@ -6,14 +6,21 @@
     <title>Happy Cynic Software</title>
     <link rel="icon" href="images/favicon.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css"> <!-- Link to stylesheet -->
+    <link rel="stylesheet" href="css/styles.css">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-slate-50 text-slate-900">
-    <header class="flex items-center justify-center px-6 py-5 bg-white shadow-md">
-        <div class="flex items-center space-x-4">
-            <img src="images/happycynic-logo.png" class="w-180 h-84" alt="Happy Cynic Software" />
-        </div>
+    <header class="flex flex-col items-center px-6 bg-white shadow-md">
+        <a href="index.html" class="flex justify-center items-start">
+            <img src="images/happycynic-logo.png" class="h-[339px] mx-auto" alt="Happy Cynic Software" />
+        </a>
+        <nav class="flex items-start mt-4 space-x-4">
+            <a href="index.html" class="text-slate-900 hover:text-emerald-400 font-semibold">Home</a>
+            <span class="text-slate-900">|</span>
+            <a href="https://github.com/HappyCynic" class="text-slate-900 hover:text-emerald-400 font-semibold">GitHub</a>
+            <span class="text-slate-900">|</span>
+            <a href="about.html" class="text-slate-900 hover:text-emerald-400 font-semibold">About</a>
+        </nav>
     </header>
     <main class="px-6 sm:px-10 lg:px-24 py-20 text-center">
         <h2 class="text-5xl font-bold text-slate-900 mb-6">

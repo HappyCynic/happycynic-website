@@ -95,3 +95,17 @@ body {
 .text-white {
   color: #ffffff;
 }
+
+.menu-link {
+    color: #1e293b;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.menu-link:hover {
+    color: #4ade80; /* emerald-400 */
+}
+
+.separator {
+    margin: 0 8px; /* Adjust spacing as needed */
+}
