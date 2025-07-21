@@ -10,8 +10,8 @@ To begin contributing to this project, follow the steps below:
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/your-username/happy-cynic-software.git
-   cd happy-cynic-software
+   git clone https://github.com/your-username/happycynic-website.git
+   cd happycynic-website
    ```
 
 2. **Open in Visual Studio Code**
