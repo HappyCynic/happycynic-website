@@ -23,7 +23,7 @@ To begin contributing to this project, follow the steps below:
 
 ## Editing the Code
 
-- You can find the main application files in the `src` directory.
+- The site's HTML, CSS, and image files are located in the repository root.
 - Use the standard coding practices and ensure you follow the project's contribution guidelines.
 - When making changes, be sure to test thoroughly and follow any coding standards that may be in place.
 
@@ -43,7 +43,6 @@ The `.devcontainer` configuration ensures that:
 
 ### Key Files in `.devcontainer`:
 - **devcontainer.json**: Defines the settings, extensions, and configurations needed for the development container.
-- **Dockerfile**: Contains the commands to build the container with the required development environment.
 
 ## Contributing
 
