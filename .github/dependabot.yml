@@ -1,17 +1,21 @@
-# To get started with Dependabot version updates, you'll need to specify which
-# package ecosystems to update and where the package manifests are located.
-# Please see the documentation for more information:
-# https://docs.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
-# https://containers.dev/guide/dependabot
+# SPDX-FileCopyrightText: 2026 Happy Cynic Software LLC
+# SPDX-License-Identifier: Apache-2.0
 
+# Weekly update pull requests. github-actions also bumps the pinned SHA of the shared agent
+# pipeline (HappyCynic/.github). Only releases out for two weeks are proposed (cooldown).
 version: 2
 updates:
-  - package-ecosystem: "npm"  # For JavaScript projects
-    directory: "/"  # Adjust if your package.json is in a different directory
-    schedule:
-      interval: weekly
-      
-  - package-ecosystem: "devcontainers"
-    directory: "/"
-    schedule:
-      interval: weekly
+  - package-ecosystem: github-actions
+    directory: /
+    schedule: { interval: weekly }
+    cooldown: { default-days: 14 }
+    groups:
+      actions: { patterns: ["*"] }
+  - package-ecosystem: npm
+    directory: /
+    schedule: { interval: weekly }
+    cooldown: { default-days: 14 }
+  - package-ecosystem: devcontainers
+    directory: /
+    schedule: { interval: weekly }
+    cooldown: { default-days: 14 }

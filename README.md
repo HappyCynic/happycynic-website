@@ -44,6 +44,13 @@ The `.devcontainer` configuration ensures that:
 ### Key Files in `.devcontainer`:
 - **devcontainer.json**: Defines the settings, extensions, and configurations needed for the development container.
 
+## Issue Workflow (AI agent)
+
+Feature work can be handed to Claude through GitHub issues using the shared HappyCynic agent
+pipeline: a maintainer adds `agent:propose` to an issue for an OpenSpec proposal in a draft
+pull request, reviews it, then adds `agent:implement`. See [CLAUDE.md](CLAUDE.md) and the
+[pipeline docs](https://github.com/HappyCynic/.github/blob/main/docs/agent-pipeline.md).
+
 ## Contributing
 
 We welcome contributions! Please adhere to the following steps:
