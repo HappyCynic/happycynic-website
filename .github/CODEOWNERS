@@ -1,0 +1,18 @@
+# SPDX-FileCopyrightText: 2026 Happy Cynic Software LLC
+# SPDX-License-Identifier: Apache-2.0
+
+# Everything needs review from the maintainer.
+*                         @mwklein
+
+# Listed explicitly so these stay owned even if the default above changes: CI and repository
+# settings, the custom domain, the security contact, and dependencies.
+/.github/                 @mwklein
+/CNAME                    @mwklein
+/.well-known/             @mwklein
+/package.json             @mwklein
+/.devcontainer/           @mwklein
+
+# Agent instructions and configuration: what the agent reads before it acts.
+/CLAUDE.md                @mwklein
+/.claude/                 @mwklein
+/openspec/config.yaml     @mwklein
