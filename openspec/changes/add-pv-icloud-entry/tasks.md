@@ -17,7 +17,7 @@
 
 ## 2. Copy
 
-- [ ] 2.1 Rewrite the em dashes in the `index.html` hero and on `about.html` without them;
+- [x] 2.1 Rewrite the em dashes in the `index.html` hero and on `about.html` without them;
       verify `grep` finds no `—` or `&mdash;` in any HTML page
 
 ## 3. Checks
