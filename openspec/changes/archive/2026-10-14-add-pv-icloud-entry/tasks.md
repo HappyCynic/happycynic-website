@@ -22,6 +22,6 @@
 
 ## 3. Checks
 
-- [ ] 3.1 Run `openspec validate --all --strict` and review `index.html` and `about.html`: links
+- [x] 3.1 Run `openspec validate --all --strict` and review `index.html` and `about.html`: links
       resolve, the shared head, header, navigation and footer still match across pages, and the
       pages work at phone width (`npm run start`, narrow viewport)
