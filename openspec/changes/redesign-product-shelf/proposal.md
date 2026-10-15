@@ -10,8 +10,7 @@ exists, sit in two loose text bands with no room to explain themselves.
 
 The maintainer chose the "Product Shelf" concept from the redesign canvas: the products are the
 brand, and each one says plainly what it does (the happy half) and what it refuses to do (the
-cynic half). There is no GitHub issue yet; the maintainer asked for this change directly. An
-issue should be opened and linked before the `agent:implement` stage.
+cynic half). Implements issue #6.
 
 ## What Changes
 
@@ -30,8 +29,8 @@ issue should be opened and linked before the `agent:implement` stage.
   (`tokens.css`, `components/bundle.css`) plus a small `css/site.css` for page layout. The
   Tailwind CDN script and the old `css/styles.css` are removed.
 - **Dark theme.** Pages follow the visitor's system setting, and a header toggle lets them
-  override it; the choice is remembered in the browser. Without JavaScript the system setting
-  still applies.
+  override it; the choice is remembered in the browser. Without JavaScript the page stays
+  light and the toggle is hidden (the design system's Themes rule).
 - **Depends on design-system additions first** (maintainer decision): a compact `SiteHeader`
   variant, a `display-xl` type size, a `ProductPanel` and a `DoesDoesnt` component, and a
   `ThemeToggle`. They land in `HappyCynic/.github` before this change is implemented; see
@@ -60,7 +59,7 @@ None. Everything stays in the `site` capability.
   dependencies, no build step.
 - **Hosting files:** unchanged (`CNAME`, `.nojekyll`, `.well-known/security.txt`).
 - **Workflow:** keeping `design-system/` in sync needs `design_system: true` in
-  `.github/workflows/agent.yml`. CLAUDE.md allows workflow edits only when an issue explicitly
-  asks, so the issue for this change must say so, or the copy is refreshed by hand with
-  `sync-design-system`.
+  `.github/workflows/agent.yml` and its `agent-sdlc` pin bumped to the `HappyCynic/.github`
+  commit that carries the additions. Issue #6 explicitly authorizes both. Workflows run from
+  `main`, so that edit merges before the `agent:implement` stage starts.
 - **Upstream:** blocked on the design-system additions being merged in `HappyCynic/.github`.

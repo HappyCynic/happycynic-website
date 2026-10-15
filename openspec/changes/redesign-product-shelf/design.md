@@ -20,6 +20,9 @@ Maintainer decisions on the open questions:
 - Design-system additions land in `HappyCynic/.github` **before** the site is rebuilt.
 - Preppd's panel links straight out to https://preppd.app; no Preppd page here.
 - Dark theme follows the system setting, plus a header toggle that remembers the choice.
+- The hero keeps "Useful Software. Skeptically Designed."
+- Private iCloud MCP's Does / Doesn't lines are approved as drafted; Preppd shows no pair until
+  the maintainer supplies its lines.
 
 ## Goals / Non-Goals
 
@@ -99,15 +102,18 @@ The footer is `hc-footer` unchanged: "© 2026 Happy Cynic Software LLC" and the 
 
 ### Theme: system setting plus a toggle
 
-- With no stored choice the page follows `prefers-color-scheme`. `site.css` maps the dark
-  tokens under `@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) … }`, so
-  this works without JavaScript.
-- A tiny inline script in `<head>`, before the stylesheets render, reads `localStorage`
-  (wrapped in try/catch) and sets `data-theme` on `<html>` when a choice is stored. That avoids
-  a flash of the wrong theme.
-- The toggle is a real `<button>` with `aria-pressed` and an accessible name ("Dark theme"),
-  rendered only once the script runs (`hidden` by default), so no-JS visitors never see a dead
-  control.
+The design system's `ThemeToggle` and Themes rules define this; the site uses its two scripts
+unchanged:
+
+- A tiny inline script in `<head>`, before the stylesheets, reads `localStorage` key
+  `hc-theme` (wrapped in try/catch), falls back to `prefers-color-scheme`, and sets
+  `data-theme` on `<html>` before first paint, so there is no flash of the wrong theme.
+- The toggle is a real `<button>` with `aria-pressed` and the accessible name "Dark theme". It
+  starts `hidden` and the script at the end of `<body>` reveals it, so no-JS visitors never see
+  a control that does nothing.
+- Without JavaScript the page stays light. Duplicating every dark token in a
+  `prefers-color-scheme` media query would let the two copies drift; the design system chose
+  not to.
 
 This is the only JavaScript on the site.
 
@@ -121,7 +127,8 @@ This is the only JavaScript on the site.
      it is open source under Apache-2.0, **View on GitHub** (secondary, to
      https://github.com/HappyCynic/pv-icloud), and the Apple trademark notice. Media slot: a
      neutral padlock icon on `teal-tint`; never the Happy Cynic face.
-   - Preppd: "Coming Soon" sunny badge, pitch, a Does/Doesn't pair, **Explore Preppd**
+   - Preppd: "Coming Soon" sunny badge, pitch, no Does/Doesn't pair until the maintainer
+     supplies its lines, **Explore Preppd**
      (secondary, to https://preppd.app). Media slot: the Preppd logo the maintainer supplied
      (lockup with the "PREPPD" wordmark and "Sanity, Packed"), stored as
      `images/preppd-logo.svg`, on a fixed white ground in both themes because the logo's navy
@@ -169,14 +176,10 @@ CLAUDE.md tells agents never to edit it by hand.
 
 ## Open Questions
 
-1. **Hero headline.** The canvas used "Small Tools. Strong Opinions." The current home page and
-   the design system's reference copy use "Useful Software. Skeptically Designed." The spec
-   below keeps the established tagline; switch if the maintainer prefers the new line.
-2. **Does / Doesn't copy.** Private iCloud MCP's lines are drafted from the site's existing claims
-   (read-only by default, opt-in writes, self-hosted, Apache-2.0) and need the maintainer's
-   check. Preppd's need the maintainer's text.
-3. **Workflow change.** Enabling `design_system: true` in `.github/workflows/agent.yml` needs an
-   issue that explicitly asks for it (CLAUDE.md).
-4. **Preppd logo wordmark font.** The logo sets "PREPPD" and "Sanity, Packed" as live
+Resolved on issue #6: the hero headline, Private iCloud MCP's Does / Doesn't copy, and the
+workflow change. Still open:
+
+1. **Preppd's Does / Doesn't lines.** Added to its panel once the maintainer supplies them.
+2. **Preppd logo wordmark font.** The logo sets "PREPPD" and "Sanity, Packed" as live
    Helvetica text, which falls back to Arial where Helvetica is missing. An outlined-text
    export from the source file would render identically everywhere.

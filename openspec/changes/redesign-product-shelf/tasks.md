@@ -6,40 +6,39 @@
       `SiteHeader` variant, `ProductPanel`, `DoesDoesnt` and `ThemeToggle` (design.md); verify
       `design-system/components/bundle.css` there defines `hc-header--compact`, `hc-panel` and
       `hc-dd`
-- [ ] 0.2 A GitHub issue for this change exists and is linked from proposal.md; it states
-      whether `.github/workflows/agent.yml` may set `design_system: true`
-- [ ] 0.3 The maintainer has answered design.md's Open Questions (hero headline, Does /
-      Doesn't copy, Preppd logo text)
+- [x] 0.2 A GitHub issue for this change exists and is linked from proposal.md (#6); it
+      authorizes the `.github/workflows/agent.yml` edit
+- [ ] 0.3 `.github/workflows/agent.yml` on `main` pins `agent-sdlc` to the commit from 0.1 and
+      sets `design_system: true`, with `/design-system/` in `.github/CODEOWNERS` (merged before
+      `agent:implement`, since workflows run from `main`)
 
 ## 1. Design-system copy
 
 - [ ] 1.1 Add `design-system/` with `sync-design-system` from the pinned `HappyCynic/.github`
       commit; verify `design-system/SOURCE` names that commit
-- [ ] 1.2 Add `/design-system/` to `.github/CODEOWNERS` and a CLAUDE.md rule to follow
-      `design-system/README.md` and never edit the copy by hand
-- [ ] 1.3 If the issue allows it, set `design_system: true` in `.github/workflows/agent.yml`;
-      otherwise note the manual sync in README.md
+- [ ] 1.2 Add a CLAUDE.md rule to follow `design-system/README.md` and never edit the copy by
+      hand
 
 ## 2. Shared layout and theme
 
-- [ ] 2.1 Write `css/site.css` (SPDX header): section bands, panel and step grids,
-      breakpoints, and the `prefers-color-scheme` mapping of dark tokens; verify it contains no
-      literal colours
+- [ ] 2.1 Write `css/site.css` (SPDX header): page background, section bands, breakpoints;
+      verify it contains no literal colours
 - [ ] 2.2 Write the shared head (favicon, Inter, tokens.css, bundle.css, site.css, inline theme
       script with try/catch around storage) and the compact header and footer markup
-- [ ] 2.3 Add the theme toggle: hidden until the script runs, `aria-pressed`, accessible name;
-      verify the choice persists across pages and that with JavaScript disabled the page still
-      follows the system setting
+- [ ] 2.3 Add the `ThemeToggle` and its two scripts from `design-system/components/ThemeToggle/README.md`;
+      verify the choice persists across pages, the system setting applies with no stored
+      choice, and with JavaScript disabled the page is light and shows no toggle
 - [ ] 2.4 Delete `css/styles.css` and remove the Tailwind CDN script; verify no page references
       either
 
 ## 3. Pages
 
-- [ ] 3.0 Add `images/preppd-logo.svg` from the maintainer's Preppd logo with colours as inline
+- [x] 3.0 Add `images/preppd-logo.svg` from the maintainer's Preppd logo with colours as inline
       `fill` attributes and no metadata; verify it has no `<style>` or `class=` and renders on
       white
-- [ ] 3.1 Rewrite `index.html` as the shelf: hero with the `h1`, Private iCloud MCP and Preppd
-      panels with Does / Doesn't pairs, Studio teaser; shared head, header (`Products` current)
+- [ ] 3.1 Rewrite `index.html` as the shelf: hero with the `h1` (`hc-hero__title--xl`),
+      Private iCloud MCP panel with its Does / Doesn't pair, Preppd panel with its logo, Studio
+      teaser; shared head, header (`Products` current)
       and footer; verify Private iCloud MCP's "View on GitHub" links to
       https://github.com/HappyCynic/pv-icloud and carries the Apache-2.0 note and trademark
       notice

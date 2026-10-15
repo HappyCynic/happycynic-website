@@ -35,15 +35,15 @@ header, navigation and footer.
 The home page (`index.html`) SHALL present a hero with the tagline "Useful Software.
 Skeptically Designed." as its only `h1`, a products section (`id="products"`) with one product
 panel per product, and a short Studio teaser linking to `/studio/`. Each product panel SHALL
-show a status badge, the product name, a short pitch and a "does / doesn't" pair. The hero
-SHALL NOT contain a primary button.
+show a status badge, the product name and a short pitch, and a "does / doesn't" pair when the
+maintainer has supplied one. The hero SHALL NOT contain a primary button.
 
 #### Scenario: Visiting the home page
 
 - **WHEN** a visitor opens happycynic.com
 - **THEN** they see the tagline "Useful Software. Skeptically Designed."
 - **AND** a Private iCloud MCP panel followed by a Preppd panel
-- **AND** each panel lists what the product does and what it does not do
+- **AND** the Private iCloud MCP panel lists what the product does and what it does not do
 
 #### Scenario: Preppd links out
 
@@ -108,8 +108,8 @@ browsers that do not follow the refresh.
 Every content page SHALL follow the visitor's `prefers-color-scheme` setting using the design
 system's light and dark tokens, and SHALL offer a theme toggle button in the header that
 overrides the setting and remembers the choice in the browser. Without JavaScript the page
-SHALL still follow the system setting and SHALL NOT show the toggle. Text in both themes SHALL
-meet WCAG AA contrast.
+SHALL render in the light theme and SHALL NOT show the toggle. Text in both themes SHALL meet
+WCAG AA contrast.
 
 #### Scenario: System preference
 
@@ -124,7 +124,7 @@ meet WCAG AA contrast.
 #### Scenario: JavaScript disabled
 
 - **WHEN** a visitor opens a page with JavaScript disabled
-- **THEN** the page follows the system setting and no toggle is shown
+- **THEN** the page renders in the light theme and no toggle is shown
 
 ### Requirement: Design-system copy
 
