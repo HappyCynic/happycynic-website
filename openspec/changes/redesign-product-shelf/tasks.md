@@ -9,7 +9,7 @@
 - [ ] 0.2 A GitHub issue for this change exists and is linked from proposal.md; it states
       whether `.github/workflows/agent.yml` may set `design_system: true`
 - [ ] 0.3 The maintainer has answered design.md's Open Questions (hero headline, Does /
-      Doesn't copy, Preppd icon)
+      Doesn't copy, Preppd logo text)
 
 ## 1. Design-system copy
 
@@ -35,22 +35,24 @@
 
 ## 3. Pages
 
+- [ ] 3.0 Add `images/preppd-logo.svg` from the maintainer's Preppd logo with colours as inline
+      `fill` attributes and no metadata; verify it has no `<style>` or `class=` and renders on
+      white
 - [ ] 3.1 Rewrite `index.html` as the shelf: hero with the `h1`, Private iCloud MCP and Preppd
       panels with Does / Doesn't pairs, Studio teaser; shared head, header (`Products` current)
-      and footer
-- [ ] 3.2 Create `products/pv-icloud/index.html` (SPDX header): breadcrumb, hero, Does /
-      Doesn't band, getting-started steps from the pv-icloud README, status, license and
-      trademark notice; shared head, header and footer
-- [ ] 3.3 Create `studio/index.html` (SPDX header) from the About copy plus the four
+      and footer; verify Private iCloud MCP's "View on GitHub" links to
+      https://github.com/HappyCynic/pv-icloud and carries the Apache-2.0 note and trademark
+      notice
+- [ ] 3.2 Create `studio/index.html` (SPDX header) from the About copy plus the four
       principles; shared head, header (`Studio` current) and footer
-- [ ] 3.4 Replace `about.html` with the redirect stub (meta refresh, canonical link, visible
+- [ ] 3.3 Replace `about.html` with the redirect stub (meta refresh, canonical link, visible
       link to `/studio/`)
-- [ ] 3.5 Update README.md's description of the pages and the root-relative path note
+- [ ] 3.4 Update README.md's description of the pages and the root-relative path note
 
 ## 4. Checks
 
 - [ ] 4.1 Run `openspec validate --all --strict` and review every changed page: links and
       image paths resolve, the head, header, navigation and footer are identical on
-      `index.html`, `products/pv-icloud/index.html` and `studio/index.html`, headings stay in
+      `index.html` and `studio/index.html`, headings stay in
       order, images have meaningful `alt` text, no em dashes, and each page works at phone
       width in both themes (`npm run start`, narrow viewport)

@@ -10,11 +10,12 @@ in sync by the agent pipeline. This repository has no copy yet.
 
 The maintainer reviewed three structures on the redesign canvas and chose **Product Shelf**:
 products lead, each with a "does / doesn't" pair that carries the brand's two halves.
-Mockups of the home page and the product page are on the canvas (`r2/Shelf.dc.html`,
-`r2/ProductPage.dc.html`).
+The home page mockup is on the canvas (`r2/Shelf.dc.html`).
 
 Maintainer decisions on the open questions:
 
+- No product pages: each shelf panel links straight to the product's own home (GitHub for
+  Private iCloud MCP, preppd.app for Preppd).
 - Notes ships later, in its own change.
 - Design-system additions land in `HappyCynic/.github` **before** the site is rebuilt.
 - Preppd's panel links straight out to https://preppd.app; no Preppd page here.
@@ -25,14 +26,17 @@ Maintainer decisions on the open questions:
 **Goals:**
 
 - A site built only from design-system tokens and components, so it can't drift again.
-- One clear job per page: the shelf sells, the product page explains, Studio introduces us.
+- One clear job per page: the shelf shows the products and sends visitors to them, Studio
+  introduces us.
 - Existing URLs keep working (`/`, `/index.html`, `/about.html`).
 - Light and dark themes at WCAG AA, a visible focus ring, layouts that work at phone width.
 
 **Non-Goals:**
 
 - Notes / writing pages and their nav item (a later change).
-- A Preppd page, or Preppd's own brand assets beyond its panel.
+- Product pages on happycynic.com; the products' own homes (GitHub, preppd.app) carry the
+  detail.
+- Preppd's own brand assets beyond its panel.
 - A build step, framework, templating or server-side code.
 - Changing hosting files or `.github/workflows/` (see Open Questions).
 
@@ -43,16 +47,16 @@ Maintainer decisions on the open questions:
 | URL | File | Purpose |
 |---|---|---|
 | `/` | `index.html` | The shelf: hero, product panels, Studio teaser |
-| `/products/pv-icloud/` | `products/pv-icloud/index.html` | Private iCloud MCP product page |
 | `/studio/` | `studio/index.html` | Studio, principles, founder |
 | `/about.html` | `about.html` | Redirect stub to `/studio/` |
 
 A folder with its own `index.html` gives clean URLs on GitHub Pages without a build step. There
-is no `/products/` index: the home page *is* the product index, and the Products nav link goes
-to `/#products`.
+are no product pages and no `/products/` index: the home page *is* the product index, the
+Products nav link goes to `/#products`, and each panel links out to the product's own home.
 
-Alternative considered: a `/products/` index page. With one product page and one external
-link it would only repeat the home page.
+Alternatives considered: a page per product, and a `/products/` index. The maintainer chose
+to send visitors straight to each product's home (its GitHub README is the documentation),
+which keeps one place to update when a product changes.
 
 ### Asset paths are root-relative
 
@@ -113,22 +117,18 @@ This is the only JavaScript on the site.
    lead paragraph. No buttons (the header's GitHub button is the view's primary).
 2. **Products** (`id="products"`): one `ProductPanel` per product, stacked, Private iCloud MCP
    first:
-   - Private iCloud MCP: "Early Release" teal badge, pitch, a Does/Doesn't pair, **Read More**
-     (secondary, to `/products/pv-icloud/`), **Source on GitHub** (ghost), and the Apple
-     trademark notice. Media slot: a neutral padlock icon on `teal-tint`; never the Happy Cynic
-     face.
+   - Private iCloud MCP: "Early Release" teal badge, pitch, a Does/Doesn't pair, a note that
+     it is open source under Apache-2.0, **View on GitHub** (secondary, to
+     https://github.com/HappyCynic/pv-icloud), and the Apple trademark notice. Media slot: a
+     neutral padlock icon on `teal-tint`; never the Happy Cynic face.
    - Preppd: "Coming Soon" sunny badge, pitch, a Does/Doesn't pair, **Explore Preppd**
-     (secondary, to https://preppd.app). Media slot: Preppd's own app icon if provided, else
-     no media slot.
+     (secondary, to https://preppd.app). Media slot: the Preppd logo the maintainer supplied
+     (lockup with the "PREPPD" wordmark and "Sanity, Packed"), stored as
+     `images/preppd-logo.svg`, on a fixed white ground in both themes because the logo's navy
+     wordmark is unreadable on dark surfaces. Its colours live as inline `fill` attributes, not
+     a `<style>` block, and the editor's C2PA metadata is dropped, as the design system does
+     for its own logos. Its `alt` text is "Preppd".
 3. **Studio teaser**: one headline, one line, a link to `/studio/`.
-
-### Product page: Private iCloud MCP
-
-Breadcrumb ("Products / Private iCloud MCP"), product icon tile, badge, `h1` with the product's
-promise and its cynic qualifier, lead, **View on GitHub** (primary) and a secondary link. Then
-a full-width `DoesDoesnt` band ("What It Does" on `sunny-tint`, "What It Won't Do" on
-`teal-tint`), a three-step "Getting started" whose text comes from the pv-icloud README, the
-early-release status (no version number), Apache-2.0, and the Apple trademark notice.
 
 ### Studio page
 
@@ -143,11 +143,10 @@ signed note, per the voice rules.
 | `display-xl` type style | 72px / 0.98, 700, -0.03em; one per page, the home hero only. At phone width it drops to `display` (48px). |
 | `SiteHeader` compact variant | `hc-header--compact`: logo left (60px), nav right, wraps on phones. Same logo-swap rule in dark. |
 | `ProductPanel` | The shelf's large product card: media slot (5 of 12 columns) plus body, `radius-lg`, `border` hairline, stacks on phones. Product colours only inside the media slot, as `ProductCard` already rules. |
-| `DoesDoesnt` | Two lists side by side: "does" items with a check in `ink`, "doesn't" items with a cross in `teal-ink`. Compact (inside a panel) and band (full width, on the two tints) variants. Each item is text; colour and icon only reinforce it. |
+| `DoesDoesnt` | Two lists side by side inside a panel: "does" items with a check in `ink`, "doesn't" items with a cross in `teal-ink`. Each item is text; colour and icon only reinforce it. |
 | `ThemeToggle` | A `<button aria-pressed>` with an icon and an accessible name, `focus` ring, and the storage contract above. |
 
-These are additive; nothing existing changes meaning. The README gets one line on pairing the
-two tints: allowed only in `DoesDoesnt`, never as large `sunny` + `teal` fills.
+These are additive; nothing existing changes meaning.
 
 ### The `design-system/` copy
 
@@ -173,9 +172,11 @@ CLAUDE.md tells agents never to edit it by hand.
 1. **Hero headline.** The canvas used "Small Tools. Strong Opinions." The current home page and
    the design system's reference copy use "Useful Software. Skeptically Designed." The spec
    below keeps the established tagline; switch if the maintainer prefers the new line.
-2. **Does / Doesn't copy.** Private iCloud MCP's lines are drafted from its README claims
+2. **Does / Doesn't copy.** Private iCloud MCP's lines are drafted from the site's existing claims
    (read-only by default, opt-in writes, self-hosted, Apache-2.0) and need the maintainer's
    check. Preppd's need the maintainer's text.
 3. **Workflow change.** Enabling `design_system: true` in `.github/workflows/agent.yml` needs an
    issue that explicitly asks for it (CLAUDE.md).
-4. **Preppd icon.** Use Preppd's app icon in its panel, or no media slot?
+4. **Preppd logo wordmark font.** The logo sets "PREPPD" and "Sanity, Packed" as live
+   Helvetica text, which falls back to Arial where Helvetica is missing. An outlined-text
+   export from the source file would render identically everywhere.

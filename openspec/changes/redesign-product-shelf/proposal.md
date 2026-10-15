@@ -17,10 +17,10 @@ issue should be opened and linked before the `agent:implement` stage.
 
 - **New information architecture.**
   - `/` becomes the product shelf: hero, one large panel per product, a short Studio teaser.
-  - `/products/pv-icloud/` is a new product page for Private iCloud MCP.
+  - Products get no pages of their own (maintainer decision): Private iCloud MCP's panel links
+    straight to its GitHub repository, Preppd's to https://preppd.app.
   - `/studio/` is a new page that replaces About: the studio, its principles and the founder.
   - `about.html` becomes a stub that forwards to `/studio/`, so existing links keep working.
-  - Preppd gets no page here; its shelf panel links to https://preppd.app.
   - Notes (writing) is out of scope; a later change adds `/notes/` and its nav item.
 - **New shared header, navigation and footer** (changes every page):
   - a compact header with the full logo on the left and the nav on the right: **Products**,
@@ -37,9 +37,8 @@ issue should be opened and linked before the `agent:implement` stage.
   `ThemeToggle`. They land in `HappyCynic/.github` before this change is implemented; see
   design.md.
 
-Pages touched: `index.html` (rewritten), `about.html` (becomes a redirect stub), new
-`products/pv-icloud/index.html` and `studio/index.html`. The shared head, header, navigation and
-footer change on every page.
+Pages touched: `index.html` (rewritten), `about.html` (becomes a redirect stub) and a new
+`studio/index.html`. The shared head, header, navigation and footer change on every page.
 
 ## Capabilities
 
@@ -51,12 +50,11 @@ None. Everything stays in the `site` capability.
 
 - `site`: the shared layout (head assets, header, nav, footer), the home page and the Private
   iCloud MCP entry change; the About page is replaced by a Studio page plus a redirect stub; new
-  requirements for the product page, the theme and the design-system copy.
+  requirements for the theme and the design-system copy.
 
 ## Impact
 
-- **Files:** `index.html`, `about.html`, new `products/pv-icloud/index.html`,
-  `studio/index.html` and `css/site.css`; `css/styles.css` removed; `design-system/` added as a
+- **Files:** `index.html`, `about.html`, new `studio/index.html` and `css/site.css`; `css/styles.css` removed; `design-system/` added as a
   managed copy.
 - **Dependencies:** the Tailwind CDN script is removed. Inter from Google Fonts stays. No new
   dependencies, no build step.

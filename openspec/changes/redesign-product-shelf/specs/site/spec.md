@@ -54,18 +54,18 @@ SHALL NOT contain a primary button.
 
 The home page (`index.html`) SHALL present a Private iCloud MCP product panel before the
 Preppd panel that shows the product name, an "Early Release" status badge, a short pitch, its
-"does / doesn't" pair, a "Read More" link to `/products/pv-icloud/`, a link to its source at
-https://github.com/HappyCynic/pv-icloud, and the notice "Not affiliated with or endorsed by
-Apple. iCloud is a trademark of Apple Inc." The status SHALL NOT name a version number. The
-panel SHALL NOT use the Happy Cynic logo or face as the product's icon.
+"does / doesn't" pair, that it is open source under the Apache-2.0 license, a button labelled
+"View on GitHub" linking to https://github.com/HappyCynic/pv-icloud, and the notice "Not
+affiliated with or endorsed by Apple. iCloud is a trademark of Apple Inc." The status SHALL NOT
+name a version number. The panel SHALL NOT use the Happy Cynic logo or face as the product's
+icon. The site SHALL NOT have a separate page for the product.
 
 #### Scenario: Visiting the home page
 
 - **WHEN** a visitor opens happycynic.com
-- **THEN** they see a Private iCloud MCP panel with its name, early-release status, pitch and
-  "does / doesn't" pair
-- **AND** a "Read More" link to `/products/pv-icloud/` and a link to
-  https://github.com/HappyCynic/pv-icloud
+- **THEN** they see a Private iCloud MCP panel with its name, early-release status, pitch,
+  "does / doesn't" pair and Apache-2.0 license
+- **AND** a "View on GitHub" button linking to https://github.com/HappyCynic/pv-icloud
 - **AND** below it, the Preppd panel with its link to https://preppd.app
 
 #### Scenario: Trademark notice
@@ -81,28 +81,6 @@ panel SHALL NOT use the Happy Cynic logo or face as the product's icon.
   scrolling
 
 ## ADDED Requirements
-
-### Requirement: Private iCloud MCP product page
-
-The site SHALL publish a product page at `/products/pv-icloud/` that shows the product name as
-its `h1`, an "Early Release" status badge without a version number, a lead paragraph, a "View
-on GitHub" button linking to https://github.com/HappyCynic/pv-icloud, a "What It Does" and a
-"What It Won't Do" list, getting-started steps consistent with the project's README, that it is
-open source under the Apache-2.0 license, and the notice "Not affiliated with or endorsed by
-Apple. iCloud is a trademark of Apple Inc." It SHALL NOT use the Happy Cynic logo or face as
-the product's icon.
-
-#### Scenario: Opening the product page
-
-- **WHEN** a visitor follows "Read More" on the Private iCloud MCP panel
-- **THEN** they reach `/products/pv-icloud/` with the product name, status, "What It Does" and
-  "What It Won't Do" lists, and a "View on GitHub" button
-
-#### Scenario: Trademark notice on the product page
-
-- **WHEN** a visitor reads the product page
-- **THEN** it includes "Not affiliated with or endorsed by Apple. iCloud is a trademark of
-  Apple Inc."
 
 ### Requirement: Studio page
 
