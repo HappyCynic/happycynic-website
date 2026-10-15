@@ -1,0 +1,325 @@
+From 8a16247e9ab9f8559034d3a7d3a0577dadbb5919 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Thu, 15 Oct 2026 22:15:25 +0000
+Subject: [PATCH] Design system: additions for the happycynic.com product shelf
+
+- display-xl type style (72px, 40px on phones) for the happycynic.com
+  home hero only, via hc-hero__title--xl
+- SiteHeader compact variant (hc-header--compact): logo left, nav right
+- ProductPanel (hc-panel): one product across the full width
+- DoesDoesnt (hc-dd): what a product does and refuses to do
+- ThemeToggle (hc-theme-toggle) and a Themes section: follow the system
+  appearance, let the visitor override it, remember the choice
+
+Additive only; no existing class or token changes meaning. Exported
+from the design-system editor (tokens.json, bundle.css, component
+READMEs) with tokens.css, tokens.md and README.md updated to match.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01TqzRgBTn3vSvbb1swBihtT
+---
+ design-system/README.md                       |  9 +++
+ design-system/components/DoesDoesnt/README.md |  9 +++
+ design-system/components/Hero/README.md       |  1 +
+ .../components/ProductPanel/README.md         | 10 +++
+ design-system/components/SiteHeader/README.md |  3 +
+ .../components/ThemeToggle/README.md          | 39 +++++++++
+ design-system/components/bundle.css           | 81 ++++++++++++++++++-
+ design-system/tokens.css                      |  8 ++
+ design-system/tokens.json                     |  1 +
+ design-system/tokens.md                       |  1 +
+ 10 files changed, 160 insertions(+), 2 deletions(-)
+ create mode 100644 design-system/components/DoesDoesnt/README.md
+ create mode 100644 design-system/components/ProductPanel/README.md
+ create mode 100644 design-system/components/ThemeToggle/README.md
+
+diff --git a/design-system/README.md b/design-system/README.md
+index 1aed255..02edf3c 100644
+--- a/design-system/README.md
++++ b/design-system/README.md
+@@ -64,6 +64,7 @@ The logo has two parts: the **face** (`happycynic-icon`) and the **wordmark** "H
+ 
+ - Set everything in `--font-sans` (Inter, from Google Fonts at weights 400, 600 and 700). The logo's wordmark is Helvetica Bold; never use Helvetica for UI text, and never retype the wordmark.
+ - `display` once per page for the hero; its second line in `teal-ink`. Sections open with `headline`; cards with `title`.
++- `display-xl` (72px) replaces `display` on one page only: the happycynic.com home hero, where the tagline is the whole statement. Never on product sites, never twice.
+ - Lead paragraphs use `body-lg` in `ink-muted`, at most `measure` wide. Running text is `body`.
+ - `eyebrow` is always uppercase with tracking, in `teal-ink`, a nod to the spaced-out SOFTWARE in the logo.
+ - Load Inter explicitly: `<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">`. With Tailwind, set `fontFamily.sans` to Inter in the config or its preflight resets the body to the system font.
+@@ -74,6 +75,8 @@ The logo has two parts: the **face** (`happycynic-icon`) and the **wordmark** "H
+ - Page gutters: `space-6` on phones, `space-10` on tablets, `space-24` on wide screens.
+ - Marketing pages are **centred**: centred headline, centred paragraph capped at `measure`, centred call-to-action. Content sections cap at `container`.
+ - Alternate `surface` and `surface-raised` bands, divided by a `border` hairline, rather than stacking cards.
++- The `SiteHeader` comes in two layouts: centred (logo over nav) for a one-page site, compact (`hc-header--compact`: logo left, nav right) once a site has several sections. A site uses one layout on every page.
++- Showcase products with `ProductCard` in a list, or `ProductPanel` when each product gets the full width (a "shelf"). Give each panel a `DoesDoesnt` pair: what the product does (the happy half) and what it refuses to do (the cynic half).
+ 
+ ## Shape, depth and motion
+ 
+@@ -87,6 +90,12 @@ The logo has two parts: the **face** (`happycynic-icon`) and the **wordmark** "H
+ - Focus: a solid 2px `focus` ring with 2px offset on every interactive element. Never remove it.
+ - Disabled: 40% opacity and no pointer events; keep the label legible.
+ 
++## Themes
++
++- Pages follow the visitor's system appearance (`prefers-color-scheme`) and may offer a `ThemeToggle` that overrides it. The page sets `data-theme` on `<html>` before first paint, from the stored choice or the system setting; without JavaScript it stays light.
++- The choice is stored in `localStorage` under `hc-theme` (`light` or `dark`), wrapped in try/catch so a blocked store falls back to the system setting.
++- A product's own media (logos, screenshots) keeps its colours in both themes: give its slot a fixed ground it was drawn for.
++
+ ## Iconography
+ 
+ No dedicated icon set exists yet. Until one is drawn, use the platform's own (SF Symbols in Apple apps) or a 2px-stroke, round-cap outline set on the web (for example Lucide), in `ink` or `teal-ink`. Icons never replace the face, and the face is never used as a generic "smile" icon.
+diff --git a/design-system/components/DoesDoesnt/README.md b/design-system/components/DoesDoesnt/README.md
+new file mode 100644
+index 0000000..230424a
+--- /dev/null
++++ b/design-system/components/DoesDoesnt/README.md
+@@ -0,0 +1,9 @@
++# DoesDoesnt
++
++Two short lists side by side: what a product does (the happy half) and what it refuses to do (the cynic half).
++
++**Markup:** `<div class="hc-dd">` with two `.hc-dd__col` children; the second also carries `hc-dd__col--doesnt`. Each column has a `<p class="hc-dd__label">` ("It does" / "It doesn’t") and a `<ul class="hc-dd__list">` of `<li>` items. The check and cross icons come from the stylesheet. The consumer provides the items.
++
++- Two to four items per column, each a plain fact the product's README backs up. No hype words; the "doesn't" column names the nonsense the product avoids.
++- The words carry the meaning: the icons and the `teal-ink` label only reinforce it.
++- Use it inside a `ProductPanel` or a product page section. The columns stack on phones.
+diff --git a/design-system/components/Hero/README.md b/design-system/components/Hero/README.md
+index 905b7a7..a95a55c 100644
+--- a/design-system/components/Hero/README.md
++++ b/design-system/components/Hero/README.md
+@@ -7,3 +7,4 @@ The opening statement of a page: optional eyebrow, a two-line `display` headline
+ - The headline is a setup and a twist: plain promise first, skeptical qualifier second, in `teal-ink`.
+ - One hero per page, always centred. Lead paragraph stays within `measure`.
+ - At most one primary and one secondary button.
++- On the happycynic.com home page only, add `hc-hero__title--xl` to the title for the `display-xl` size (72px, 40px on phones). Every other page keeps `display`.
+diff --git a/design-system/components/ProductPanel/README.md b/design-system/components/ProductPanel/README.md
+new file mode 100644
+index 0000000..aa5c2c1
+--- /dev/null
++++ b/design-system/components/ProductPanel/README.md
+@@ -0,0 +1,10 @@
++# ProductPanel
++
++Shows one Happy Cynic product across the full width of happycynic.com: a large media slot beside a badge, name, lead, `DoesDoesnt` pair and actions.
++
++**Markup:** `<article class="hc-panel">` with `.hc-panel__media` (the product's logo or artwork `<img>`) and `.hc-panel__body` holding a `hc-badge`, `<h2 class="hc-panel__title">`, `.hc-panel__lead`, a `DoesDoesnt`, `.hc-panel__actions` and an optional `.hc-panel__note` for legal lines. The consumer provides the media, status, name, lead, the does / doesn't items and the links.
++
++- Stack panels vertically, `space-10` apart, at most `container` plus a little (72rem) wide. The media slot sits left and the panel stacks on phones.
++- The product's own logo and colours appear only inside the media slot. Give the slot the ground the logo was drawn for (set `background` on `.hc-panel__media`), and keep that ground in both themes. Without a logo, use a 2px-stroke outline icon in `teal-ink` on the default `teal-tint`; never the Happy Cynic face.
++- One action per panel is enough; use `secondary` or `ghost` buttons, since the page's one primary lives elsewhere (the header or the hero).
++- Use `ProductCard` instead when products are listed compactly.
+diff --git a/design-system/components/SiteHeader/README.md b/design-system/components/SiteHeader/README.md
+index 815c9a6..b521d23 100644
+--- a/design-system/components/SiteHeader/README.md
++++ b/design-system/components/SiteHeader/README.md
+@@ -4,6 +4,9 @@ The happycynic.com masthead: the full logo centred above a short, pipe-separated
+ 
+ **Markup:** `<header class="hc-header">` holding `.hc-header__logo` (two images: `.hc-logo--full` and `.hc-logo--face`) and `<nav class="hc-nav">` with links separated by `<span class="hc-nav__sep" aria-hidden="true">|</span>`. Mark the current page with `aria-current="page"`.
+ 
++**Compact variant:** add `hc-header--compact` to the header: the logo sits left at 60px (face 48px in dark), the nav right without separators, wrapping under the logo on phones. Leave out the `hc-nav__sep` spans; a small primary `Button` (for example GitHub) and a `ThemeToggle` may end the nav.
++
+ - Keep the nav to three to five Title Case items.
++- One layout per site: centred for a one-page site, compact once it has several sections.
+ - Both logo images are required: the dark theme hides the full logo (its wordmark is black) and shows the face alone.
+ - Product sites use their own header; this one is for Happy Cynic properties.
+diff --git a/design-system/components/ThemeToggle/README.md b/design-system/components/ThemeToggle/README.md
+new file mode 100644
+index 0000000..c60740b
+--- /dev/null
++++ b/design-system/components/ThemeToggle/README.md
+@@ -0,0 +1,39 @@
++# ThemeToggle
++
++A round icon button that switches a page between the light and dark themes, overriding the visitor's system appearance and remembering the choice.
++
++**Markup:** `<button class="hc-theme-toggle" type="button" aria-pressed="false" aria-label="Dark theme" hidden>` holding two inline SVG icons, `.hc-icon-moon` and `.hc-icon-sun` (2px-stroke outlines, `stroke="currentColor"`, `aria-hidden="true"`). The stylesheet shows the moon in light and the sun in dark. The consumer provides the two scripts below.
++
++In `<head>`, before the stylesheets, so the right theme paints first:
++
++```html
++<script>
++(function () {
++  var t; try { t = localStorage.getItem('hc-theme'); } catch (e) {}
++  if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
++  document.documentElement.setAttribute('data-theme', t);
++})();
++</script>
++```
++
++At the end of `<body>`:
++
++```html
++<script>
++(function () {
++  var root = document.documentElement, b = document.querySelector('.hc-theme-toggle');
++  if (!b) return;
++  function sync() { b.setAttribute('aria-pressed', String(root.getAttribute('data-theme') === 'dark')); }
++  b.hidden = false; sync();
++  b.addEventListener('click', function () {
++    var t = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
++    root.setAttribute('data-theme', t); sync();
++    try { localStorage.setItem('hc-theme', t); } catch (e) {}
++  });
++})();
++</script>
++```
++
++- The button starts `hidden`, so visitors without JavaScript never see a control that does nothing; their page stays light.
++- `aria-pressed="true"` means the dark theme is on; the accessible name stays "Dark theme".
++- Place it at the end of the `SiteHeader` nav, before any button. One per page.
+diff --git a/design-system/components/bundle.css b/design-system/components/bundle.css
+index 62ad7f2..7e36d17 100644
+--- a/design-system/components/bundle.css
++++ b/design-system/components/bundle.css
+@@ -11,7 +11,7 @@
+ }
+ 
+ /* Focus, shared by every interactive element */
+-.hc-btn:focus-visible, .hc-link:focus-visible, .hc-nav a:focus-visible, .hc-product a:focus-visible {
++.hc-btn:focus-visible, .hc-link:focus-visible, .hc-nav a:focus-visible, .hc-product a:focus-visible, .hc-panel a:focus-visible, .hc-theme-toggle:focus-visible {
+   outline: 2px solid var(--focus);
+   outline-offset: 2px;
+ }
+@@ -127,12 +127,89 @@
+ .hc-footer__tagline { margin: 0; font: 400 14px/20px var(--font-sans); color: var(--on-inverse-muted); }
+ .hc-footer a { color: var(--on-inverse); }
+ 
++/* Hero: extra-large title for the happycynic.com home only (display-xl) */
++.hc-hero__title--xl { font-size: 72px; line-height: .98; letter-spacing: -0.03em; }
++
++/* Site header, compact: logo left, nav right */
++.hc-header--compact {
++  flex-direction: row; flex-wrap: wrap; justify-content: space-between;
++  gap: var(--space-4) var(--space-6);
++  padding: var(--space-3) var(--space-6);
++}
++.hc-header--compact .hc-header__logo .hc-logo--full { height: 60px; }
++.hc-header--compact .hc-header__logo .hc-logo--face { height: 48px; }
++.hc-header--compact .hc-nav { margin-top: 0; flex-wrap: wrap; gap: var(--space-6); }
++
++/* Product panel: one product across the full width (the shelf) */
++.hc-panel {
++  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
++  background: var(--surface-raised);
++  border: 1px solid var(--border);
++  border-radius: var(--radius-lg);
++  overflow: hidden;
++}
++.hc-panel__media {
++  min-height: 320px; padding: var(--space-10);
++  display: grid; place-items: center;
++  background: var(--teal-tint);
++}
++.hc-panel__media img { display: block; max-width: 100%; height: auto; }
++.hc-panel__body { padding: var(--space-10); }
++.hc-panel__title { font: 700 36px/40px var(--font-sans); letter-spacing: -0.01em; color: var(--ink); margin: var(--space-4) 0 var(--space-2); }
++.hc-panel__lead { font: 400 18px/1.625 var(--font-sans); color: var(--ink-muted); margin: 0; }
++.hc-panel__actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-4); margin-top: var(--space-6); }
++.hc-panel__note { font: 400 14px/20px var(--font-sans); color: var(--ink-subtle); margin: var(--space-4) 0 0; }
++
++/* Does / doesn't: the two halves applied to a product */
++.hc-dd { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-6); margin: var(--space-6) 0 0; }
++.hc-dd__label {
++  font: 600 13px/16px var(--font-sans); letter-spacing: .08em; text-transform: uppercase;
++  color: var(--ink); margin: 0;
++}
++.hc-dd__col--doesnt .hc-dd__label { color: var(--teal-ink); }
++.hc-dd__list { list-style: none; margin: var(--space-2) 0 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-2); }
++.hc-dd__list li { display: flex; gap: var(--space-2); font: 400 16px/1.5 var(--font-sans); color: var(--ink-muted); }
++.hc-dd__list li::before {
++  content: ""; flex: none; width: 16px; height: 16px; margin-top: 4px;
++  background-color: var(--ink);
++  -webkit-mask: var(--hc-dd-icon) center / contain no-repeat;
++  mask: var(--hc-dd-icon) center / contain no-repeat;
++  --hc-dd-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E");
++}
++.hc-dd__col--doesnt .hc-dd__list li::before {
++  background-color: var(--teal-ink);
++  --hc-dd-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='M18 6 6 18M6 6l12 12'/%3E%3C/svg%3E");
++}
++
++/* Theme toggle: overrides the system appearance */
++.hc-theme-toggle {
++  display: inline-grid; place-items: center;
++  width: 44px; height: 44px; padding: 0;
++  border-radius: var(--radius-full);
++  border: 1px solid var(--border-strong);
++  background: transparent; color: var(--ink); cursor: pointer;
++  transition: border-color .15s ease-out;
++}
++.hc-theme-toggle:hover { border-color: var(--ink); }
++.hc-theme-toggle[hidden] { display: none; }
++.hc-theme-toggle svg { width: 20px; height: 20px; }
++.hc-theme-toggle .hc-icon-sun { display: none; }
++[data-theme="dark"] .hc-theme-toggle .hc-icon-moon { display: none; }
++[data-theme="dark"] .hc-theme-toggle .hc-icon-sun { display: block; }
++
++@media (max-width: 860px) {
++  .hc-panel { grid-template-columns: minmax(0, 1fr); }
++  .hc-panel__media { min-height: 200px; }
++  .hc-panel__body { padding: var(--space-6); }
++}
+ @media (max-width: 640px) {
+   .hc-hero__title { font-size: 36px; }
++  .hc-hero__title--xl { font-size: 40px; }
+   .hc-product { grid-template-columns: 1fr; }
++  .hc-dd { grid-template-columns: minmax(0, 1fr); }
+ }
+ @media (prefers-reduced-motion: reduce) {
+-  .hc-btn, .hc-nav a { transition: none; }
++  .hc-btn, .hc-nav a, .hc-theme-toggle { transition: none; }
+ }
+ 
+ /* The full logo's wordmark is black: on dark grounds show the face alone */
+diff --git a/design-system/tokens.css b/design-system/tokens.css
+index cc5e463..190bc31 100644
+--- a/design-system/tokens.css
++++ b/design-system/tokens.css
+@@ -71,6 +71,7 @@
+   --container: 56rem; /* Max width of a centred content section. */
+   --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+   --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
++  --text-display-xl: 700 72px/0.98 var(--font-sans); /* The happycynic.com home hero only, in place of `display` (`hc-hero__title--xl`). Two lines, the second in `teal-ink`; drops to 40px on phones. */
+   --text-display: 700 48px/1 var(--font-sans); /* One per page: the hero headline. Two lines, the second in `teal-ink`. */
+   --text-headline: 700 36px/40px var(--font-sans); /* Section headings. */
+   --text-title: 600 24px/32px var(--font-sans); /* Card titles, sub-sections. */
+@@ -81,6 +82,13 @@
+   --text-eyebrow: 600 13px/16px var(--font-sans); /* Uppercase kicker above a headline and the endorsement line, echoing the spaced SOFTWARE of the logo. Always uppercase, in `teal-ink`. */
+   --text-code: 400 14px/20px var(--font-mono); /* Inline code, keyboard shortcuts, technical asides. */
+ }
++.display-xl {
++  font-family: var(--font-sans);
++  font-size: 72px;
++  line-height: 0.98;
++  font-weight: 700;
++  letter-spacing: -0.03em;
++}
+ .display {
+   font-family: var(--font-sans);
+   font-size: 48px;
+diff --git a/design-system/tokens.json b/design-system/tokens.json
+index 35f6e45..790c6f6 100644
+--- a/design-system/tokens.json
++++ b/design-system/tokens.json
+@@ -41,6 +41,7 @@
+     },
+     "groups": [
+       {"name": "Display", "family": "sans", "styles": [
++        {"name": "display-xl", "fontSize": "72px", "lineHeight": 0.98, "fontWeight": 700, "letterSpacing": "-0.03em", "sample": "Useful Software. Skeptically Designed.", "usage": "The happycynic.com home hero only, in place of `display` (`hc-hero__title--xl`). Two lines, the second in `teal-ink`; drops to 40px on phones."},
+         {"name": "display", "fontSize": "48px", "lineHeight": 1, "fontWeight": 700, "letterSpacing": "-0.02em", "sample": "Useful Software. Skeptically Designed.", "usage": "One per page: the hero headline. Two lines, the second in `teal-ink`."},
+         {"name": "headline", "fontSize": "36px", "lineHeight": "40px", "fontWeight": 700, "letterSpacing": "-0.01em", "sample": "Coming Soon: Preppd", "usage": "Section headings."},
+         {"name": "title", "fontSize": "24px", "lineHeight": "32px", "fontWeight": 600, "sample": "About the Founder", "usage": "Card titles, sub-sections."}
+diff --git a/design-system/tokens.md b/design-system/tokens.md
+index 2363c5a..aa8193d 100644
+--- a/design-system/tokens.md
++++ b/design-system/tokens.md
+@@ -116,6 +116,7 @@ font-family: var(--font-sans);   /* the family alone */
+ 
+ | style | CSS | size / line | weight | family | usage |
+ | --- | --- | --- | --- | --- | --- |
++| `display-xl` | `.display-xl`, `--text-display-xl` | 72px / 0.98 | 700 | `sans` | The happycynic.com home hero only, in place of `display` (`hc-hero__title--xl`). Two lines, the second in `teal-ink`; drops to 40px on phones. |
+ | `display` | `.display`, `--text-display` | 48px / 1 | 700 | `sans` | One per page: the hero headline. Two lines, the second in `teal-ink`. |
+ | `headline` | `.headline`, `--text-headline` | 36px / 40px | 700 | `sans` | Section headings. |
+ | `title` | `.title`, `--text-title` | 24px / 32px | 600 | `sans` | Card titles, sub-sections. |
+-- 
+2.43.0
+
