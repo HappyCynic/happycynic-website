@@ -1,0 +1,169 @@
+## MODIFIED Requirements
+
+### Requirement: Shared page layout
+
+Every content page SHALL use the same head assets (favicon, Inter font,
+`/design-system/tokens.css`, `/design-system/components/bundle.css`, `/css/site.css` and the
+inline theme script), the same compact header, the same navigation and the same footer. The
+header SHALL show the full Happy Cynic logo linking to the home page (the face alone on dark
+grounds) and a navigation with Products (`/#products`), Studio (`/studio/`), the theme toggle
+and a GitHub button (`https://github.com/HappyCynic`). The link to the current page SHALL carry
+`aria-current="page"`. The footer SHALL show "© <current year> Happy Cynic Software LLC" and
+the tagline. Pages SHALL NOT load the Tailwind CDN script. Redirect stubs are exempt from the
+header, navigation and footer.
+
+#### Scenario: Navigating between pages
+
+- **WHEN** a visitor opens any content page
+- **THEN** the header shows the logo linking to `/` and links to Products (`/#products`),
+  Studio (`/studio/`) and GitHub (`https://github.com/HappyCynic`)
+- **AND** the footer shows the copyright line for Happy Cynic Software LLC with the current
+  year
+
+#### Scenario: Phone width
+
+- **WHEN** any content page is viewed at phone width
+- **THEN** the navigation wraps below the logo and nothing scrolls horizontally
+
+#### Scenario: Keyboard focus
+
+- **WHEN** a visitor tabs through any page
+- **THEN** every link and button shows the design system's 2px focus ring
+
+### Requirement: Home page
+
+The home page (`index.html`) SHALL present a hero with the tagline "Useful Software.
+Skeptically Designed." as its only `h1`, a products section (`id="products"`) with one product
+panel per product, and a short Studio teaser linking to `/studio/`. Each product panel SHALL
+show a status badge, the product name, a short pitch and a "does / doesn't" pair. The hero
+SHALL NOT contain a primary button.
+
+#### Scenario: Visiting the home page
+
+- **WHEN** a visitor opens happycynic.com
+- **THEN** they see the tagline "Useful Software. Skeptically Designed."
+- **AND** a Private iCloud MCP panel followed by a Preppd panel
+- **AND** each panel lists what the product does and what it does not do
+
+#### Scenario: Preppd links out
+
+- **WHEN** a visitor reads the Preppd panel
+- **THEN** it shows a "Coming Soon" badge and a button linking to https://preppd.app
+
+### Requirement: Private iCloud MCP entry
+
+The home page (`index.html`) SHALL present a Private iCloud MCP product panel before the
+Preppd panel that shows the product name, an "Early Release" status badge, a short pitch, its
+"does / doesn't" pair, a "Read More" link to `/products/pv-icloud/`, a link to its source at
+https://github.com/HappyCynic/pv-icloud, and the notice "Not affiliated with or endorsed by
+Apple. iCloud is a trademark of Apple Inc." The status SHALL NOT name a version number. The
+panel SHALL NOT use the Happy Cynic logo or face as the product's icon.
+
+#### Scenario: Visiting the home page
+
+- **WHEN** a visitor opens happycynic.com
+- **THEN** they see a Private iCloud MCP panel with its name, early-release status, pitch and
+  "does / doesn't" pair
+- **AND** a "Read More" link to `/products/pv-icloud/` and a link to
+  https://github.com/HappyCynic/pv-icloud
+- **AND** below it, the Preppd panel with its link to https://preppd.app
+
+#### Scenario: Trademark notice
+
+- **WHEN** a visitor reads the Private iCloud MCP panel
+- **THEN** the panel includes "Not affiliated with or endorsed by Apple. iCloud is a trademark
+  of Apple Inc."
+
+#### Scenario: Phone width
+
+- **WHEN** the home page is viewed at phone width
+- **THEN** the panel's media, text and buttons stack and fit the screen without horizontal
+  scrolling
+
+## ADDED Requirements
+
+### Requirement: Private iCloud MCP product page
+
+The site SHALL publish a product page at `/products/pv-icloud/` that shows the product name as
+its `h1`, an "Early Release" status badge without a version number, a lead paragraph, a "View
+on GitHub" button linking to https://github.com/HappyCynic/pv-icloud, a "What It Does" and a
+"What It Won't Do" list, getting-started steps consistent with the project's README, that it is
+open source under the Apache-2.0 license, and the notice "Not affiliated with or endorsed by
+Apple. iCloud is a trademark of Apple Inc." It SHALL NOT use the Happy Cynic logo or face as
+the product's icon.
+
+#### Scenario: Opening the product page
+
+- **WHEN** a visitor follows "Read More" on the Private iCloud MCP panel
+- **THEN** they reach `/products/pv-icloud/` with the product name, status, "What It Does" and
+  "What It Won't Do" lists, and a "View on GitHub" button
+
+#### Scenario: Trademark notice on the product page
+
+- **WHEN** a visitor reads the product page
+- **THEN** it includes "Not affiliated with or endorsed by Apple. iCloud is a trademark of
+  Apple Inc."
+
+### Requirement: Studio page
+
+The site SHALL publish a Studio page at `/studio/` that describes Happy Cynic Software, its
+principles and its founder.
+
+#### Scenario: Visiting the Studio page
+
+- **WHEN** a visitor follows the Studio link
+- **THEN** they see sections about the studio, its principles and its founder
+
+### Requirement: Legacy About URL
+
+`/about.html` SHALL forward visitors to `/studio/` with a meta refresh, declare
+`https://happycynic.com/studio/` as its canonical URL, and show a link to `/studio/` for
+browsers that do not follow the refresh.
+
+#### Scenario: Following an old About link
+
+- **WHEN** a visitor opens https://happycynic.com/about.html
+- **THEN** they arrive at `/studio/`
+
+### Requirement: Light and dark themes
+
+Every content page SHALL follow the visitor's `prefers-color-scheme` setting using the design
+system's light and dark tokens, and SHALL offer a theme toggle button in the header that
+overrides the setting and remembers the choice in the browser. Without JavaScript the page
+SHALL still follow the system setting and SHALL NOT show the toggle. Text in both themes SHALL
+meet WCAG AA contrast.
+
+#### Scenario: System preference
+
+- **WHEN** a visitor whose system uses a dark appearance opens any page for the first time
+- **THEN** the page renders in the dark theme, with the face in place of the full logo
+
+#### Scenario: Toggling the theme
+
+- **WHEN** a visitor presses the theme toggle and later opens another page
+- **THEN** that page renders in the theme they chose
+
+#### Scenario: JavaScript disabled
+
+- **WHEN** a visitor opens a page with JavaScript disabled
+- **THEN** the page follows the system setting and no toggle is shown
+
+### Requirement: Design-system copy
+
+The site SHALL be styled from a managed copy of the Happy Cynic design system at
+`design-system/`, refreshed from `HappyCynic/.github` and never edited by hand, with
+`design-system/SOURCE` recording the commit it came from. Page-specific CSS SHALL live in
+`css/site.css` and SHALL use design-system tokens rather than literal colour values.
+
+#### Scenario: Checking the styles
+
+- **WHEN** a reviewer reads `css/site.css`
+- **THEN** every colour it uses is a design-system token (`var(--…)`)
+
+## REMOVED Requirements
+
+### Requirement: About page
+
+**Reason**: The Studio page (`/studio/`) replaces the About page, and the nav names it Studio.
+
+**Migration**: `about.html` becomes a redirect stub to `/studio/` (see "Legacy About URL").
