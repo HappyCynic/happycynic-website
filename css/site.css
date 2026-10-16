@@ -19,9 +19,8 @@ img { max-width: 100%; }
 }
 .site-skip:focus { top: var(--space-4); outline: 2px solid var(--focus); outline-offset: 2px; }
 
-/* Dark theme: show the reversed logo (white wordmark) instead of the face alone.
-   Temporary until HappyCynic/.github ships happycynic-logo-reversed and its SiteHeader rules;
-   then the file moves to design-system/logos/ and these rules go. */
+/* Dark theme: show the reversed logo (white wordmark, teal SOFTWARE) instead of the face
+   alone, so both themes show the same mark. */
 .hc-header__logo .hc-logo--reversed { display: none; }
 .hc-header--compact .hc-header__logo .hc-logo--reversed { height: 60px; }
 [data-theme="dark"] .hc-header .hc-header__logo .hc-logo--reversed { display: block; }
