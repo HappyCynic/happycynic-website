@@ -23,7 +23,14 @@ To begin contributing to this project, follow the steps below:
 
 ## Editing the Code
 
-- The site's HTML, CSS, and image files are located in the repository root.
+- Pages: `index.html` (the product shelf), `studio/index.html` (the studio and its founder)
+  and `about.html` (a stub that forwards old links to `/studio/`).
+- Styling comes from `design-system/`, a managed copy of the Happy Cynic design system that
+  the agent pipeline refreshes from `HappyCynic/.github`; never edit it here. Page layout
+  lives in `css/site.css` and uses design-system tokens only.
+- Asset paths are root-relative (`/design-system/…`, `/css/site.css`) so every page shares
+  identical header and footer markup. They work on happycynic.com and under `npm run start`,
+  not under a `*.github.io/<repo>/` project URL.
 - Use the standard coding practices and ensure you follow the project's contribution guidelines.
 - When making changes, be sure to test thoroughly and follow any coding standards that may be in place.
 

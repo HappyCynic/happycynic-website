@@ -1,75 +1,122 @@
 <!DOCTYPE html>
+<!-- SPDX-FileCopyrightText: 2026 Happy Cynic Software LLC -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Cynic Software</title>
-    <link rel="icon" href="images/favicon.png" type="image/png">
+    <meta name="description" content="Useful software, skeptically designed. Small, opinionated tools from Happy Cynic Software.">
+    <script>
+    (function () {
+      var t; try { t = localStorage.getItem('hc-theme'); } catch (e) {}
+      if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+    </script>
+    <link rel="icon" href="/design-system/logos/favicon-32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="/design-system/logos/favicon-16.png" type="image/png" sizes="16x16">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/design-system/tokens.css">
+    <link rel="stylesheet" href="/design-system/components/bundle.css">
+    <link rel="stylesheet" href="/css/site.css">
 </head>
-<body class="bg-slate-50 text-slate-900">
-    <header class="flex flex-col items-center px-6 bg-white shadow-md">
-        <a href="index.html" class="flex justify-center items-start">
-            <img src="images/happycynic-logo.png" alt="Happy Cynic Software" />
+<body class="hc-root">
+    <a class="site-skip" href="#main">Skip to content</a>
+    <header class="hc-header hc-header--compact">
+        <a class="hc-header__logo" href="/">
+            <img class="hc-logo--full" src="/design-system/logos/happycynic-logo.png" alt="Happy Cynic Software" width="125" height="60">
+            <img class="hc-logo--face" src="/design-system/logos/happycynic-icon.svg" alt="Happy Cynic Software" width="48" height="48">
         </a>
-        <nav class="flex items-start mt-4 space-x-4">
-            <a href="index.html" class="text-slate-900 hover:text-emerald-400 font-semibold">Home</a>
-            <span class="text-slate-900">|</span>
-            <a href="https://github.com/HappyCynic" class="text-slate-900 hover:text-emerald-400 font-semibold">GitHub</a>
-            <span class="text-slate-900">|</span>
-            <a href="about.html" class="text-slate-900 hover:text-emerald-400 font-semibold">About</a>
+        <nav class="hc-nav" aria-label="Main">
+            <a href="/#products" aria-current="page">Products</a>
+            <a href="/studio/">Studio</a>
+            <button class="hc-theme-toggle" type="button" aria-pressed="false" aria-label="Dark theme" hidden><svg class="hc-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg><svg class="hc-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+            <a class="hc-btn hc-btn--primary hc-btn--sm" href="https://github.com/HappyCynic">GitHub</a>
         </nav>
     </header>
-    <main class="px-6 sm:px-10 lg:px-24 py-20 text-center">
-        <h2 class="text-5xl font-bold text-slate-900 mb-6">
-            Useful Software.<br><span class="text-emerald-400">Skeptically Designed.</span>
-        </h2>
-        <p class="text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
-            At Happy Cynic, we design tools for people who are smart enough to question most apps,
-            and still believe software can be delightful, useful, and slightly sarcastic.
-        </p>
+
+    <main id="main">
+        <section class="hc-hero">
+            <p class="hc-eyebrow">Happy Cynic Software</p>
+            <h1 class="hc-hero__title hc-hero__title--xl">Useful Software.<br><span class="hc-hero__accent">Skeptically Designed.</span></h1>
+            <p class="hc-hero__lead">At Happy Cynic, we design tools for people who are smart enough to question most apps, and still believe software can be delightful, useful, and slightly sarcastic.</p>
+        </section>
+
+        <section id="products" class="site-shelf" aria-label="Products">
+            <div class="site-wrap">
+                <article id="pv-icloud" class="hc-panel">
+                    <div class="hc-panel__media">
+                        <svg class="site-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    </div>
+                    <div class="hc-panel__body">
+                        <span class="hc-badge hc-badge--teal">Early Release</span>
+                        <h2 class="hc-panel__title">Private iCloud MCP</h2>
+                        <p class="hc-panel__lead">Lets AI assistants like Claude search and read your iCloud Mail, Calendar and Contacts.</p>
+                        <div class="hc-dd">
+                            <div class="hc-dd__col">
+                                <p class="hc-dd__label">It does</p>
+                                <ul class="hc-dd__list">
+                                    <li>Search and read mail, events and contacts</li>
+                                    <li>Run on a machine you control</li>
+                                </ul>
+                            </div>
+                            <div class="hc-dd__col hc-dd__col--doesnt">
+                                <p class="hc-dd__label">It doesn’t</p>
+                                <ul class="hc-dd__list">
+                                    <li>Write anything unless you opt in</li>
+                                    <li>Send your data to our servers</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="hc-panel__actions">
+                            <a class="hc-btn hc-btn--secondary" href="https://github.com/HappyCynic/pv-icloud">View on GitHub</a>
+                            <span class="small site-meta">Open source, Apache-2.0</span>
+                        </div>
+                        <p class="hc-panel__note">Not affiliated with or endorsed by Apple. iCloud is a trademark of Apple Inc.</p>
+                    </div>
+                </article>
+
+                <article id="preppd" class="hc-panel">
+                    <div class="hc-panel__media site-media--light">
+                        <img src="/images/preppd-logo.svg" alt="Preppd" width="240" height="279">
+                    </div>
+                    <div class="hc-panel__body">
+                        <span class="hc-badge hc-badge--sunny">Coming Soon</span>
+                        <h2 class="hc-panel__title">Preppd</h2>
+                        <p class="hc-panel__lead">Smart travel prep for real people. Packing lists that know the weather, your destination, and your chaotic reality.</p>
+                        <div class="hc-panel__actions">
+                            <a class="hc-btn hc-btn--secondary" href="https://preppd.app">Explore Preppd</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="site-band site-band--raised site-center">
+            <p class="hc-eyebrow">Studio</p>
+            <h2 class="headline">A Solo Studio With Two Opinions on Everything.</h2>
+            <p class="body-lg site-lead">Not bloated, trendy, or pretending to be your best friend.</p>
+            <p class="body site-more"><a class="hc-link" href="/studio/">About the studio</a></p>
+        </section>
     </main>
-    <section id="pv-icloud" class="bg-white py-20 border-t border-slate-200">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <h3 class="text-4xl font-bold mb-4">
-                Early Release: <span class="text-slate-900">Private iCloud MCP</span>
-            </h3>
-            <p class="text-slate-600 mb-6 text-lg">
-                An MCP server that lets AI assistants like Claude search and read your iCloud Mail, Calendar and Contacts. It is read-only by default, every write is opt-in, and you run it yourself.
-            </p>
-            <p class="text-slate-500">
-                Early release, open source under the Apache-2.0 license. Interfaces may change before 1.0.
-            </p>
-            <div class="mt-10">
-                <a href="https://github.com/HappyCynic/pv-icloud" class="inline-block px-6 py-3 bg-yellow-300 hover:bg-yellow-400 text-slate-900 font-semibold rounded-full transition">
-                    View on GitHub
-                </a>
-            </div>
-            <p class="mt-6 text-sm text-slate-500">
-                Not affiliated with or endorsed by Apple. iCloud is a trademark of Apple Inc.
-            </p>
-        </div>
-    </section>
-    <section id="preppd" class="bg-white py-20 border-t border-slate-200">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <h3 class="text-4xl font-bold mb-4">
-                Coming Soon: <span class="text-slate-900">Preppd</span>
-            </h3>
-            <p class="text-slate-600 mb-6 text-lg">
-                Smart travel prep for real people. Packing lists that know the weather, your destination, and your chaotic reality.
-            </p>
-            <div class="mt-10">
-                <a href="https://preppd.app" class="inline-block px-6 py-3 bg-yellow-300 hover:bg-yellow-400 text-slate-900 font-semibold rounded-full transition">
-                    Explore Our Concept Mobile App: Preppd
-                </a>
-            </div>
-        </div>
-    </section>
-    <footer class="bg-slate-900 text-white py-10 text-center">
-        <p class="mb-2">© 2025 Happy Cynic Software LLC</p>
-        <p class="text-slate-400 text-sm">We build clever tools for people who don’t fall for buzzwords.</p>
+
+    <footer class="hc-footer">
+        <p class="hc-footer__legal">© 2026 Happy Cynic Software LLC</p>
+        <p class="hc-footer__tagline">We build clever tools for people who don’t fall for buzzwords.</p>
     </footer>
+    <script>
+    (function () {
+      var root = document.documentElement, b = document.querySelector('.hc-theme-toggle');
+      if (!b) return;
+      function sync() { b.setAttribute('aria-pressed', String(root.getAttribute('data-theme') === 'dark')); }
+      b.hidden = false; sync();
+      b.addEventListener('click', function () {
+        var t = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', t); sync();
+        try { localStorage.setItem('hc-theme', t); } catch (e) {}
+      });
+    })();
+    </script>
 </body>
 </html>
