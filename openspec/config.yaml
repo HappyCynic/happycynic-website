@@ -11,8 +11,9 @@ context: |
   Project: happycynic-website, the public, Apache-2.0 website for Happy Cynic Software LLC,
   an independent software studio. Served by GitHub Pages at https://happycynic.com.
 
-  Tech stack: static HTML pages in the repository root (index.html, about.html), styled with
-  Tailwind CSS from its CDN plus css/styles.css, and the Inter font from Google Fonts. Images
+  Tech stack: static HTML pages (index.html, studio/index.html, and about.html as a redirect
+  stub), styled with the managed Happy Cynic design-system copy in design-system/ (tokens.css,
+  components/bundle.css) plus css/site.css, and the Inter font from Google Fonts. Images
   in images/. No build step; GitHub Pages serves the root of main as-is (.nojekyll disables
   Jekyll). live-server (npm run start) previews locally.
 

@@ -1,0 +1,72 @@
+/* SPDX-FileCopyrightText: 2026 Happy Cynic Software LLC */
+/* SPDX-License-Identifier: Apache-2.0 */
+
+/* Page layout for happycynic.com. Colours, type and components come from the managed
+   design-system/ copy (tokens.css, components/bundle.css); this file only arranges them and
+   uses tokens, never literal colours. */
+
+html { background: var(--surface); }
+body { margin: 0; }
+img { max-width: 100%; }
+
+/* Skip link: hidden until focused */
+.site-skip {
+  position: absolute; left: var(--space-4); top: -100px; z-index: 10;
+  padding: var(--space-2) var(--space-4);
+  background: var(--surface-raised); color: var(--ink);
+  border-radius: var(--radius-sm);
+  font: 600 16px/24px var(--font-sans);
+}
+.site-skip:focus { top: var(--space-4); outline: 2px solid var(--focus); outline-offset: 2px; }
+
+/* Dark theme: show the reversed logo (white wordmark, teal SOFTWARE) instead of the face
+   alone, so both themes show the same mark. */
+.hc-header__logo .hc-logo--reversed { display: none; }
+.hc-header--compact .hc-header__logo .hc-logo--reversed { height: 60px; }
+[data-theme="dark"] .hc-header .hc-header__logo .hc-logo--reversed { display: block; }
+[data-theme="dark"] .hc-header .hc-header__logo .hc-logo--face { display: none; }
+
+/* `.hc-nav a` would recolour the primary button's label; keep it on-sunny in both themes */
+.hc-nav .hc-btn--primary,
+.hc-nav .hc-btn--primary:hover { color: var(--on-sunny); }
+
+/* Sections */
+.site-wrap { max-width: 72rem; margin: 0 auto; }
+.site-band { padding: var(--space-20) var(--space-6); border-top: 1px solid var(--border); }
+.site-band--raised { background: var(--surface-raised); }
+.site-center { text-align: center; }
+.site-band .headline { margin: 0 0 var(--space-4); color: var(--ink); }
+.site-lead { max-width: var(--measure); margin: 0 auto; color: var(--ink-muted); }
+.site-more { margin: var(--space-6) 0 0; }
+
+/* The shelf: product panels stacked */
+.site-shelf { padding: var(--space-10) var(--space-6) var(--space-20); }
+.site-shelf .site-wrap { display: flex; flex-direction: column; gap: var(--space-10); }
+.site-icon { width: 96px; height: 96px; color: var(--teal-ink); }
+/* A product logo drawn for a light ground keeps it in both themes (design-system Themes rule).
+   on-inverse is near-white in both themes. */
+.site-media--light { background: var(--on-inverse); }
+.site-media--light img { width: 100%; max-width: 240px; }
+.site-meta { color: var(--ink-subtle); }
+
+/* Studio page */
+.site-prose { max-width: var(--measure); margin: 0 auto; text-align: left; }
+.site-prose p { margin: 0 0 var(--space-4); color: var(--ink-muted); }
+.site-prose p:last-child { margin-bottom: 0; }
+.site-principles {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-10);
+  max-width: var(--container); margin: var(--space-10) auto 0; text-align: left;
+}
+.site-principles h3 { margin: 0 0 var(--space-2); color: var(--ink); }
+.site-principles p { margin: 0; color: var(--ink-muted); }
+
+/* Page gutters: space-6 on phones, space-10 on tablets, space-24 on wide screens */
+@media (min-width: 768px) {
+  .site-band, .site-shelf { padding-left: var(--space-10); padding-right: var(--space-10); }
+}
+@media (min-width: 1100px) {
+  .site-band, .site-shelf { padding-left: var(--space-24); padding-right: var(--space-24); }
+}
+@media (max-width: 760px) {
+  .site-principles { grid-template-columns: minmax(0, 1fr); }
+}

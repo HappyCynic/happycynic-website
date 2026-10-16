@@ -1,0 +1,154 @@
+/* Happy Cynic — generated from tokens.json */
+:root, [data-theme="light"] {
+  --sunny: #ffda3c; /* The Happy half of the mark. Primary buttons, highlight fills, the warm side of any two-tone moment. Never text: put `on-sunny` on it. */
+  --sunny-hover: #e6c22e; /* Hover and pressed fill for anything painted `sunny`. `on-sunny` holds 10.3:1 on it. */
+  --sunny-tint: #fff6cc; /* Quiet warm background for badges and highlighted rows. `ink` and `ink-muted` read on it in both themes. */
+  --on-sunny: #0f172a; /* Text and icons on `sunny` and `sunny-hover` (13:1). Stays dark in both themes because sunny does. */
+  --teal: #27a4a3; /* The Cynic half of the mark. Fills, large graphics, icons and display text 24px+. Only 3.0:1 on white and 2.9:1 on `surface`, so never body text: use `teal-ink`. */
+  --teal-ink: #1b7372; /* Teal for text: links, the accent line of a headline, eyebrows. 5.4:1 on `surface`, 5.6:1 on `surface-raised`; dark 8.4:1 on `surface`, 6.9:1 on `surface-raised`. */
+  --teal-tint: #e0f4f3; /* Quiet cool background for badges and info notes. `teal-ink` reads on it (4.9:1 light, 6.7:1 dark). */
+  --on-teal: #0f172a; /* Text on a `teal` fill (5.9:1). White on teal is only 3.0:1: allowed for 24px+ type, nothing smaller. */
+  --logo-ink: #000000; /* The pure black outline of the face and the wordmark. Reserved for the mark and illustrations drawn in its style; UI text uses `ink`. */
+  --ink: #0f172a; /* Headlines, body copy and nav on `surface`, `surface-raised` and both tints (17:1+ light, 16:1+ dark). */
+  --ink-muted: #475569; /* Supporting paragraphs, descriptions, captions on `surface` and `surface-raised` (7.2:1 light, 5.7:1 dark on raised). */
+  --ink-subtle: #64748b; /* Meta text, timestamps and placeholder text on `surface-raised` and `surface` (4.55:1 minimum). The floor: nothing lighter carries text. */
+  --surface: #f8fafc; /* Page background. */
+  --surface-raised: #ffffff; /* Header, cards, alternating page sections, inputs. */
+  --surface-inverse: #0f172a; /* Footer and other deliberately dark bands. Pair with `on-inverse` and `on-inverse-muted`. */
+  --on-inverse: #ffffff; /* Primary text on `surface-inverse` (17:1). */
+  --on-inverse-muted: #94a3b8; /* Secondary text on `surface-inverse`, such as the footer tagline (7:1 light, 7.9:1 dark). */
+  --border: #e2e8f0; /* Decorative hairlines: section dividers, card outlines that sit on a contrasting ground. Not enough for a control's edge. */
+  --border-strong: #64748b; /* Edges that carry meaning: inputs, secondary buttons, checkboxes (3:1+ on both surfaces in both themes). */
+  --focus: #1b7372; /* The 2px focus ring, offset 2px, on every interactive element. 5.4:1+ on every surface in its theme. */
+  --success: var(--teal-ink); /* Positive status text and icons. Always paired with a word or icon; teal against `danger` orange stays distinguishable for colour-blind readers. */
+  --danger: #c2410c; /* Errors and destructive actions, text or icon, on `surface`, `surface-raised` and `danger-tint` (4.7:1+ light, 6.5:1+ dark). */
+  --danger-tint: #fff1e8; /* Background of an error note or badge, with `danger` text. */
+  --warning: var(--sunny); /* Caution fill with `on-sunny` text. Use sparingly: sunny is the brand's happy colour, not an alarm. */
+  --shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.06); /* Resting cards on `surface`. */
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* The site header, popovers. The only elevation most pages need. */
+}
+[data-theme="dark"] {
+  --sunny: #ffda3c;
+  --sunny-hover: #e6c22e;
+  --sunny-tint: #3a3312;
+  --on-sunny: #0f172a;
+  --teal: #27a4a3;
+  --teal-ink: #4fc3c2;
+  --teal-tint: #12302f;
+  --on-teal: #0f172a;
+  --ink: #f8fafc;
+  --ink-muted: #94a3b8;
+  --ink-subtle: #94a3b8;
+  --surface: #0f172a;
+  --surface-raised: #1e293b;
+  --surface-inverse: #020617;
+  --on-inverse: #f8fafc;
+  --on-inverse-muted: #94a3b8;
+  --border: #334155;
+  --border-strong: #94a3b8;
+  --focus: #4fc3c2;
+  --success: var(--teal-ink);
+  --danger: #fb923c;
+  --danger-tint: #3b1d0e;
+  --warning: var(--sunny);
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+}
+:root {
+  --space-1: 4px; /* The base unit. Icon-to-label gaps. */
+  --space-2: 8px; /* Tight stacks: badge padding, title to meta. */
+  --space-3: 12px; /* Button vertical padding, list gaps. */
+  --space-4: 16px; /* Nav item gaps, headline to paragraph. */
+  --space-6: 24px; /* Page side gutter on phones, button horizontal padding, card padding. */
+  --space-10: 40px; /* Paragraph to call-to-action; page gutter on tablets. */
+  --space-20: 80px; /* Vertical padding of every page section. */
+  --space-24: 96px; /* Page side gutter on wide screens. */
+  --radius-sm: 6px; /* Badges, inputs, code chips. */
+  --radius-md: 12px; /* Cards and notes. */
+  --radius-lg: 20px; /* Feature panels, app-icon-like tiles. */
+  --radius-full: 9999px; /* Buttons (always pills) and anything circular, like the face itself. */
+  --measure: 42rem; /* Max width of a paragraph block (about 70 characters at `body-lg`). */
+  --container: 56rem; /* Max width of a centred content section. */
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --text-display-xl: 700 72px/0.98 var(--font-sans); /* The happycynic.com home hero only, in place of `display` (`hc-hero__title--xl`). Two lines, the second in `teal-ink`; drops to 40px on phones. */
+  --text-display: 700 48px/1 var(--font-sans); /* One per page: the hero headline. Two lines, the second in `teal-ink`. */
+  --text-headline: 700 36px/40px var(--font-sans); /* Section headings. */
+  --text-title: 600 24px/32px var(--font-sans); /* Card titles, sub-sections. */
+  --text-body-lg: 400 18px/1.625 var(--font-sans); /* Lead paragraphs under a display or headline, in `ink-muted`, at most `measure` wide. */
+  --text-body: 400 16px/1.625 var(--font-sans); /* Default running text. */
+  --text-label: 600 16px/24px var(--font-sans); /* Buttons, nav links, form labels. */
+  --text-small: 400 14px/20px var(--font-sans); /* Footer copy, captions, helper text. */
+  --text-eyebrow: 600 13px/16px var(--font-sans); /* Uppercase kicker above a headline and the endorsement line, echoing the spaced SOFTWARE of the logo. Always uppercase, in `teal-ink`. */
+  --text-code: 400 14px/20px var(--font-mono); /* Inline code, keyboard shortcuts, technical asides. */
+}
+.display-xl {
+  font-family: var(--font-sans);
+  font-size: 72px;
+  line-height: 0.98;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+.display {
+  font-family: var(--font-sans);
+  font-size: 48px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.headline {
+  font-family: var(--font-sans);
+  font-size: 36px;
+  line-height: 40px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.title {
+  font-family: var(--font-sans);
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+.body-lg {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  line-height: 1.625;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.body {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.625;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.label {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+.small {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+.code {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
