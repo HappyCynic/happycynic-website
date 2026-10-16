@@ -1,0 +1,218 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+/* Happy Cynic components: plain CSS classes over tokens.css. Prefix: hc- */
+
+.hc-root, .hc-root * { box-sizing: border-box; }
+.hc-root {
+  font-family: var(--font-sans);
+  color: var(--ink);
+  background: var(--surface);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Focus, shared by every interactive element */
+.hc-btn:focus-visible, .hc-link:focus-visible, .hc-nav a:focus-visible, .hc-product a:focus-visible, .hc-panel a:focus-visible, .hc-theme-toggle:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* Button: always a pill */
+.hc-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-full);
+  border: 1px solid transparent;
+  font: 600 16px/24px var(--font-sans);
+  text-decoration: none; cursor: pointer;
+  transition: background-color .15s ease-out, border-color .15s ease-out, color .15s ease-out;
+}
+.hc-btn--primary { background: var(--sunny); color: var(--on-sunny); }
+.hc-btn--primary:hover { background: var(--sunny-hover); }
+.hc-btn--secondary { background: transparent; color: var(--ink); border-color: var(--border-strong); }
+.hc-btn--secondary:hover { border-color: var(--ink); }
+.hc-btn--ghost { background: transparent; color: var(--teal-ink); padding-left: var(--space-3); padding-right: var(--space-3); }
+.hc-btn--ghost:hover { text-decoration: underline; text-underline-offset: 4px; }
+.hc-btn--sm { padding: var(--space-2) var(--space-4); font-size: 14px; line-height: 20px; }
+.hc-btn[disabled], .hc-btn[aria-disabled="true"] { opacity: .4; pointer-events: none; }
+
+/* Link */
+.hc-link {
+  color: var(--teal-ink); font-weight: 600;
+  text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px;
+}
+.hc-link:hover { text-decoration-thickness: 2px; }
+
+/* Badge */
+.hc-badge {
+  display: inline-flex; align-items: center; gap: var(--space-1);
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-sm);
+  font: 600 12px/16px var(--font-sans); letter-spacing: .04em; text-transform: uppercase;
+  background: var(--surface); color: var(--ink-muted); border: 1px solid var(--border);
+}
+.hc-badge--sunny { background: var(--sunny-tint); color: var(--ink); border-color: transparent; }
+.hc-badge--teal { background: var(--teal-tint); color: var(--teal-ink); border-color: transparent; }
+.hc-badge--danger { background: var(--danger-tint); color: var(--danger); border-color: transparent; }
+
+/* Eyebrow */
+.hc-eyebrow {
+  font: 600 13px/16px var(--font-sans); letter-spacing: .08em; text-transform: uppercase;
+  color: var(--teal-ink); margin: 0 0 var(--space-4);
+}
+
+/* Site header: centred logo over a pipe-separated nav */
+.hc-header {
+  display: flex; flex-direction: column; align-items: center;
+  padding: var(--space-4) var(--space-6);
+  background: var(--surface-raised);
+  box-shadow: var(--shadow-md);
+}
+.hc-header__logo img { display: block; height: 96px; width: auto; }
+.hc-nav { display: flex; align-items: center; gap: var(--space-4); margin-top: var(--space-4); }
+.hc-nav a {
+  color: var(--ink); font-weight: 600; text-decoration: none;
+  transition: color .15s ease-out;
+}
+.hc-nav a:hover, .hc-nav a[aria-current="page"] { color: var(--teal-ink); }
+.hc-nav__sep { color: var(--ink-subtle); }
+
+/* Hero */
+.hc-hero { padding: var(--space-20) var(--space-6); text-align: center; background: var(--surface); }
+.hc-hero__title {
+  font: 700 48px/1 var(--font-sans); letter-spacing: -0.02em;
+  color: var(--ink); margin: 0 0 var(--space-6);
+}
+.hc-hero__accent { color: var(--teal-ink); }
+.hc-hero__lead {
+  font: 400 18px/1.625 var(--font-sans); color: var(--ink-muted);
+  max-width: var(--measure); margin: 0 auto;
+}
+.hc-hero__actions { margin-top: var(--space-10); display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap; }
+
+/* Product card: showcase an app on happycynic.com */
+.hc-product {
+  display: grid; grid-template-columns: 96px 1fr; gap: var(--space-6); align-items: start;
+  padding: var(--space-6);
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  max-width: var(--container);
+}
+.hc-product__media {
+  width: 96px; height: 96px; border-radius: var(--radius-lg);
+  background: var(--teal-tint); display: grid; place-items: center; overflow: hidden;
+}
+.hc-product__media img { width: 100%; height: 100%; object-fit: cover; }
+.hc-product__title { font: 600 24px/32px var(--font-sans); color: var(--ink); margin: var(--space-2) 0; }
+.hc-product__desc { font: 400 16px/1.625 var(--font-sans); color: var(--ink-muted); margin: 0 0 var(--space-6); }
+
+/* Endorsement: "A Happy Cynic app" */
+.hc-endorse {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  color: var(--ink-muted); text-decoration: none;
+  font: 600 13px/16px var(--font-sans); letter-spacing: .08em; text-transform: uppercase;
+}
+.hc-endorse img { width: 24px; height: 24px; display: block; }
+.hc-endorse strong { color: var(--ink); font-weight: 700; }
+.hc-endorse--lg img { width: 40px; height: 40px; }
+.hc-endorse--lg { font-size: 14px; line-height: 20px; gap: var(--space-3); }
+
+/* Site footer */
+.hc-footer {
+  background: var(--surface-inverse); color: var(--on-inverse);
+  padding: var(--space-10) var(--space-6); text-align: center;
+}
+.hc-footer__legal { margin: 0 0 var(--space-2); font: 400 16px/24px var(--font-sans); }
+.hc-footer__tagline { margin: 0; font: 400 14px/20px var(--font-sans); color: var(--on-inverse-muted); }
+.hc-footer a { color: var(--on-inverse); }
+
+/* Hero: extra-large title for the happycynic.com home only (display-xl) */
+.hc-hero__title--xl { font-size: 72px; line-height: .98; letter-spacing: -0.03em; }
+
+/* Site header, compact: logo left, nav right */
+.hc-header--compact {
+  flex-direction: row; flex-wrap: wrap; justify-content: space-between;
+  gap: var(--space-4) var(--space-6);
+  padding: var(--space-3) var(--space-6);
+}
+.hc-header--compact .hc-header__logo .hc-logo--full { height: 60px; }
+.hc-header--compact .hc-header__logo .hc-logo--face { height: 48px; }
+.hc-header--compact .hc-nav { margin-top: 0; flex-wrap: wrap; gap: var(--space-6); }
+
+/* Product panel: one product across the full width (the shelf) */
+.hc-panel {
+  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.hc-panel__media {
+  min-height: 320px; padding: var(--space-10);
+  display: grid; place-items: center;
+  background: var(--teal-tint);
+}
+.hc-panel__media img { display: block; max-width: 100%; height: auto; }
+.hc-panel__body { padding: var(--space-10); }
+.hc-panel__title { font: 700 36px/40px var(--font-sans); letter-spacing: -0.01em; color: var(--ink); margin: var(--space-4) 0 var(--space-2); }
+.hc-panel__lead { font: 400 18px/1.625 var(--font-sans); color: var(--ink-muted); margin: 0; }
+.hc-panel__actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-4); margin-top: var(--space-6); }
+.hc-panel__note { font: 400 14px/20px var(--font-sans); color: var(--ink-subtle); margin: var(--space-4) 0 0; }
+
+/* Does / doesn't: the two halves applied to a product */
+.hc-dd { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-6); margin: var(--space-6) 0 0; }
+.hc-dd__label {
+  font: 600 13px/16px var(--font-sans); letter-spacing: .08em; text-transform: uppercase;
+  color: var(--ink); margin: 0;
+}
+.hc-dd__col--doesnt .hc-dd__label { color: var(--teal-ink); }
+.hc-dd__list { list-style: none; margin: var(--space-2) 0 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-2); }
+.hc-dd__list li { display: flex; gap: var(--space-2); font: 400 16px/1.5 var(--font-sans); color: var(--ink-muted); }
+.hc-dd__list li::before {
+  content: ""; flex: none; width: 16px; height: 16px; margin-top: 4px;
+  background-color: var(--ink);
+  -webkit-mask: var(--hc-dd-icon) center / contain no-repeat;
+  mask: var(--hc-dd-icon) center / contain no-repeat;
+  --hc-dd-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E");
+}
+.hc-dd__col--doesnt .hc-dd__list li::before {
+  background-color: var(--teal-ink);
+  --hc-dd-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='M18 6 6 18M6 6l12 12'/%3E%3C/svg%3E");
+}
+
+/* Theme toggle: overrides the system appearance */
+.hc-theme-toggle {
+  display: inline-grid; place-items: center;
+  width: 44px; height: 44px; padding: 0;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-strong);
+  background: transparent; color: var(--ink); cursor: pointer;
+  transition: border-color .15s ease-out;
+}
+.hc-theme-toggle:hover { border-color: var(--ink); }
+.hc-theme-toggle[hidden] { display: none; }
+.hc-theme-toggle svg { width: 20px; height: 20px; }
+.hc-theme-toggle .hc-icon-sun { display: none; }
+[data-theme="dark"] .hc-theme-toggle .hc-icon-moon { display: none; }
+[data-theme="dark"] .hc-theme-toggle .hc-icon-sun { display: block; }
+
+@media (max-width: 860px) {
+  .hc-panel { grid-template-columns: minmax(0, 1fr); }
+  .hc-panel__media { min-height: 200px; }
+  .hc-panel__body { padding: var(--space-6); }
+}
+@media (max-width: 640px) {
+  .hc-hero__title { font-size: 36px; }
+  .hc-hero__title--xl { font-size: 40px; }
+  .hc-product { grid-template-columns: 1fr; }
+  .hc-dd { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hc-btn, .hc-nav a, .hc-theme-toggle { transition: none; }
+}
+
+/* The full logo's wordmark is black: on dark grounds show the face alone */
+.hc-header__logo .hc-logo--face { display: none; height: 72px; }
+[data-theme="dark"] .hc-header__logo .hc-logo--full { display: none; }
+[data-theme="dark"] .hc-header__logo .hc-logo--face { display: block; }

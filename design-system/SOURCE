@@ -1,0 +1,5 @@
+HappyCynic/.github@cc3ce249cbc9507313673f1ef89cadbbfc50faee
+
+Managed copy of https://github.com/HappyCynic/.github/tree/main/design-system: do not edit
+it here. Change the master by pull request to HappyCynic/.github; the agent pipeline
+(actions/agent-sdlc, design_system: true) refreshes this copy to the commit it pins.
