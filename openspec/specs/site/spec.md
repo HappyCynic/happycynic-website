@@ -23,8 +23,7 @@ branch, with no build step, under the custom domain happycynic.com.
 Every content page SHALL use the same head assets (favicon, Inter font,
 `/design-system/tokens.css`, `/design-system/components/bundle.css`, `/css/site.css` and the
 inline theme script), the same compact header, the same navigation and the same footer. The
-header SHALL show the full Happy Cynic logo linking to the home page (the face alone on dark
-grounds) and a navigation with Products (`/#products`), Studio (`/studio/`), the theme toggle
+header SHALL show the full Happy Cynic logo linking to the home page (the reversed logo, with a white wordmark, on dark grounds) and a navigation with Products (`/#products`), Studio (`/studio/`), the theme toggle
 and a GitHub button (`https://github.com/HappyCynic`). The link to the current page SHALL carry
 `aria-current="page"`. The footer SHALL show "© <current year> Happy Cynic Software LLC" and
 the tagline. Pages SHALL NOT load the Tailwind CDN script. Redirect stubs are exempt from the
@@ -149,7 +148,7 @@ WCAG AA contrast.
 #### Scenario: System preference
 
 - **WHEN** a visitor whose system uses a dark appearance opens any page for the first time
-- **THEN** the page renders in the dark theme, with the face in place of the full logo
+- **THEN** the page renders in the dark theme, with the reversed logo (white wordmark) in place of the full logo
 
 #### Scenario: Toggling the theme
 
