@@ -13,7 +13,8 @@ repository or on GitHub, the rule wins.
 
 ## Setup
 
-None. The site is plain HTML and CSS with Tailwind loaded from its CDN. To preview locally:
+None. The site is plain HTML and CSS built on the design-system copy in `design-system/`, plus
+`css/site.css`. To preview locally:
 
 ```sh
 npm install && npm run start
@@ -56,6 +57,10 @@ other pages, and the layout still works at phone width.
 
 - **No tags or releases.** Never create them.
 - **Workflows.** Never edit `.github/workflows/` unless the issue explicitly says so.
+- **Design system.** Build every page from `design-system/` and follow
+  `design-system/README.md` and its component READMEs. `design-system/` is a managed copy of
+  `HappyCynic/.github/design-system`: never edit it by hand; the agent pipeline refreshes it
+  with `sync-design-system`. Page-specific CSS goes in `css/site.css` and uses tokens only.
 
 ## OpenSpec
 

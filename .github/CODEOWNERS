@@ -16,3 +16,6 @@
 /CLAUDE.md                @mwklein
 /.claude/                 @mwklein
 /openspec/config.yaml     @mwklein
+
+# Managed copy of the Happy Cynic design system; changes come from HappyCynic/.github.
+/design-system/           @mwklein

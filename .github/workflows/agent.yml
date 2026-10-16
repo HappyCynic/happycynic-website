@@ -26,9 +26,10 @@ jobs:
       issues: write # clear the trigger label afterwards
       id-token: write # Claude GitHub App token exchange
     steps:
-      - uses: HappyCynic/.github/actions/agent-sdlc@cd0c50197a1920572b7a5d7c23d83e51eff56abe # main 2026-10-13
+      - uses: HappyCynic/.github/actions/agent-sdlc@cc3ce249cbc9507313673f1ef89cadbbfc50faee # main 2026-10-15
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           openspec_version: 1.13.2 # must match CLAUDE.md
           # Static site: no toolchain or dependencies to set up.
           model: claude-opus-5-5 # both stages
+          design_system: true # keeps design-system/ in step with HappyCynic/.github (issue #6)

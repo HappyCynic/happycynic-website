@@ -2,21 +2,22 @@
 
 ## 0. Prerequisites (outside this repository)
 
-- [ ] 0.1 Design-system additions merged in `HappyCynic/.github`: `display-xl`, the compact
+- [x] 0.1 Design-system additions merged in `HappyCynic/.github`: `display-xl`, the compact
       `SiteHeader` variant, `ProductPanel`, `DoesDoesnt` and `ThemeToggle` (design.md); verify
       `design-system/components/bundle.css` there defines `hc-header--compact`, `hc-panel` and
       `hc-dd`
 - [x] 0.2 A GitHub issue for this change exists and is linked from proposal.md (#6); it
       authorizes the `.github/workflows/agent.yml` edit
-- [ ] 0.3 `.github/workflows/agent.yml` on `main` pins `agent-sdlc` to the commit from 0.1 and
-      sets `design_system: true`, with `/design-system/` in `.github/CODEOWNERS` (merged before
-      `agent:implement`, since workflows run from `main`)
+- [x] 0.3 `.github/workflows/agent.yml` pins `agent-sdlc` to the commit from 0.1
+      (HappyCynic/.github#9, `cc3ce24`) and sets `design_system: true`, with `/design-system/`
+      in `.github/CODEOWNERS` (the maintainer chose to implement in this session, so the
+      workflow change ships in this pull request)
 
 ## 1. Design-system copy
 
-- [ ] 1.1 Add `design-system/` with `sync-design-system` from the pinned `HappyCynic/.github`
+- [x] 1.1 Add `design-system/` with `sync-design-system` from the pinned `HappyCynic/.github`
       commit; verify `design-system/SOURCE` names that commit
-- [ ] 1.2 Add a CLAUDE.md rule to follow `design-system/README.md` and never edit the copy by
+- [x] 1.2 Add a CLAUDE.md rule to follow `design-system/README.md` and never edit the copy by
       hand
 
 ## 2. Shared layout and theme
